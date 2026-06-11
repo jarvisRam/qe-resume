@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #0a0e14;
+  --color-surface: #0d1117;
+  --color-card: #10151e;
+  --color-card-hover: #141b26;
+  --color-line: #1d2530;
+  --color-line-strong: #2b3441;
+  --color-fg: #e6edf3;
+  --color-muted: #93a1b1;
+  --color-dim: #6b7787;
+  --color-accent: #58a6ff;
+  --color-accent-strong: #79b8ff;
+  --color-term-green: #7ee787;
+  --color-term-yellow: #e3b341;
+
+  --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-mono), ui-monospace, "SF Mono", Menlo, monospace;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  background-color: var(--color-ink);
+  background-image:
+    radial-gradient(60rem 40rem at 80% -10%, rgba(88, 166, 255, 0.07), transparent 60%),
+    radial-gradient(50rem 40rem at -10% 10%, rgba(126, 231, 135, 0.04), transparent 55%);
+  background-attachment: fixed;
+  color: var(--color-fg);
+}
+
+::selection {
+  background: rgba(88, 166, 255, 0.3);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-line-strong) transparent;
+}
+
+a {
+  text-decoration: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* ---- Print: ATS-clean one-pager ---- */
+@media print {
+  @page {
+    margin: 0.6in;
+    size: letter;
+  }
+  html,
+  body {
+    background: #ffffff !important;
+    background-image: none !important;
+    color: #000000 !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .resume-page {
+    background: #ffffff !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+  }
+  .print-sheet {
+    box-shadow: none !important;
+    border: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    background: #ffffff !important;
+  }
+  .print-sheet * {
+    color: #000000 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
