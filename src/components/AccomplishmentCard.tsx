@@ -8,7 +8,7 @@ export function AccomplishmentCard({ item }: { item: Accomplishment }) {
   return (
     <Link
       href={`/work/${item.slug}`}
-      className="group relative flex flex-col rounded-xl border border-line bg-card p-5 transition-all duration-300 hover:-translate-y-1 hover:border-accent/50 hover:bg-card-hover hover:shadow-[0_0_0_1px_rgba(88,166,255,0.25),0_18px_40px_-20px_rgba(88,166,255,0.45)]"
+      className="group relative flex h-full flex-col rounded-xl border border-line bg-card p-5 transition-all duration-300 hover:-translate-y-1 hover:border-accent/50 hover:bg-card-hover hover:shadow-[0_0_0_1px_rgba(88,166,255,0.25),0_18px_40px_-20px_rgba(88,166,255,0.45)]"
     >
       <div className="flex items-start justify-between gap-3">
         <h3 className="text-base font-semibold text-fg">{item.title}</h3>

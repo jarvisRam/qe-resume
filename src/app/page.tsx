@@ -28,7 +28,7 @@ export default function Home() {
             {accomplishments
               .filter((a) => a.era !== "earlier")
               .map((item, i) => (
-                <Reveal key={item.slug} delay={i * 0.06}>
+                <Reveal key={item.slug} delay={i * 0.06} className="h-full">
                   <AccomplishmentCard item={item} />
                 </Reveal>
               ))}
@@ -44,7 +44,7 @@ export default function Home() {
             {accomplishments
               .filter((a) => a.era === "earlier")
               .map((item, i) => (
-                <Reveal key={item.slug} delay={i * 0.06}>
+                <Reveal key={item.slug} delay={i * 0.06} className="h-full">
                   <AccomplishmentCard item={item} />
                 </Reveal>
               ))}
