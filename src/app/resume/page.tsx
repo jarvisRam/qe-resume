@@ -10,6 +10,7 @@ import {
   certifications,
   aiExpertise,
   accomplishments,
+  personalProjects,
 } from "@/content/resume";
 
 export const metadata: Metadata = {
@@ -138,6 +139,16 @@ export default function ResumePage() {
                 <strong>{a.title}:</strong> {a.pdfSummary}
               </li>
             ))}
+        </ul>
+
+        {/* Personal Projects */}
+        <h2 style={h2}>Personal Projects</h2>
+        <ul style={{ margin: 0, paddingLeft: "18px" }}>
+          {personalProjects.map((p) => (
+            <li key={p.slug} style={{ marginBottom: "3px" }}>
+              <strong>{p.title}:</strong> {p.pdfSummary}
+            </li>
+          ))}
         </ul>
 
         {/* Education */}

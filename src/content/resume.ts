@@ -504,6 +504,7 @@ export type PersonalProject = {
   title: string;
   tagline: string;
   description: string;
+  pdfSummary: string;
   screenshot?: string;
   url?: string;
   stack: string[];
@@ -515,8 +516,10 @@ export const personalProjects: PersonalProject[] = [
     title: "Scorebook App",
     tagline: "A cross-platform sports score tracker — built to stress-test the AI-first startup claim.",
     description:
-      "A serious personal project to validate the claims of big AI tech CEOs around million-dollar single-person startups — built end to end with AI assistance. A full-stack monorepo: a React Native / Expo mobile app, a Node.js + Express REST backend, Playwright E2E tests, and Maestro mobile flows. The whole build process was documented to honestly evaluate what AI-assisted solo development actually enables.",
-    stack: ["React Native", "Expo", "Node.js", "Express", "Playwright", "Maestro", "Zustand", "React Query"],
+      "A serious personal project to validate the claims of big AI tech CEOs around million-dollar single-person startups — built end to end with AI assistance. A full-stack monorepo: a React Native / Expo mobile app and a Node.js + Express REST backend, with Maestro mobile flows for automated testing. The whole build process was documented to honestly evaluate what AI-assisted solo development actually enables.",
+    pdfSummary:
+      "React Native / Expo + Node.js/Express monorepo built solo with AI assistance — a documented experiment to validate AI-first single-person startup claims.",
+    stack: ["React Native", "Expo", "Node.js", "Express", "Maestro", "Zustand", "React Query"],
   },
   {
     slug: "flag-explorer",
@@ -524,19 +527,23 @@ export const personalProjects: PersonalProject[] = [
     tagline: "A multi-level flag quiz with country facts — built for my daughter's iPad.",
     description:
       "A fun geography game built for my 8-year-old daughter. Progressive difficulty levels, right answers unlock an interesting fact about that country. Entirely vanilla HTML, CSS, and JavaScript — deliberately zero framework, shipped and running on her iPad.",
+    pdfSummary:
+      "Vanilla JS multi-level flag quiz with country facts, built for my daughter. Zero dependencies, deployed on Vercel. flag-explorer.vercel.app",
     screenshot: "/projects/flag-explorer.png",
     url: "https://flag-explorer.vercel.app",
     stack: ["HTML", "CSS", "JavaScript", "Vercel"],
   },
   {
     slug: "birthday-rsvp",
-    title: "Birthday RSVP & Memory Wall",
-    tagline: "RSVP + allergy capture + post-party photo sharing — in her favourite theme.",
+    title: "Birthday RSVP & Memory Share",
+    tagline: "RSVP + allergy capture + post-party photo sharing from host to guests — in her favourite theme.",
     description:
-      "Built to organise my daughter's 9th birthday: guests RSVP and flag dietary allergies before the party, then after the event a shared memory wall lets everyone upload photos and messages. Full-stack Next.js with a Neon Postgres DB, Drizzle ORM, and NextAuth — deployed in her favourite party theme.",
+      "Built to organise my daughter's 9th birthday: guests RSVP and flag dietary allergies before the party, then after the event I shared photos and videos from the celebration with all the guests through the site. Entirely vanilla HTML, CSS, and JavaScript bundled with Vite — deployed on Vercel in her favourite party theme.",
+    pdfSummary:
+      "Vanilla JS + Vite RSVP site for my daughter's 9th birthday — guest attendance, allergy capture, and host-curated post-party photo sharing. Deployed on Vercel.",
     screenshot: "/projects/birthday-rsvp.png",
     url: "https://harshini-birthday-invite.vercel.app",
-    stack: ["Next.js", "Neon DB", "Drizzle ORM", "NextAuth", "shadcn/ui", "Tailwind", "Vercel"],
+    stack: ["HTML", "CSS", "JavaScript", "Vite", "Vercel"],
   },
   {
     slug: "cricbuds",
@@ -544,6 +551,8 @@ export const personalProjects: PersonalProject[] = [
     tagline: "Season-long score prediction game for our Edinburgh cricket friends group.",
     description:
       "All of us play for different clubs across Edinburgh in the East of Scotland league. CricBuds lets us predict each other's scores across the season, tracks the leaderboard, and keeps the banter going between match days. Built with Next.js, Neon Postgres, and Drizzle ORM — live throughout the cricket season.",
+    pdfSummary:
+      "Next.js + Neon DB cricket score prediction game for our Edinburgh East of Scotland league group — season-long leaderboard. cricbuds.vercel.app",
     screenshot: "/projects/cricbuds.png",
     url: "https://cricbuds.vercel.app",
     stack: ["Next.js", "Neon DB", "Drizzle ORM", "NextAuth", "shadcn/ui", "Tailwind", "Framer Motion"],
