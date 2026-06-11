@@ -21,6 +21,9 @@ export function Nav() {
           <a href="/#skills" className="hidden rounded-md px-3 py-1.5 text-muted transition-colors hover:text-fg sm:block">
             Skills
           </a>
+          <a href="/#projects" className="hidden rounded-md px-3 py-1.5 text-muted transition-colors hover:text-fg sm:block">
+            Projects
+          </a>
           <Link
             href="/resume"
             className="ml-1 inline-flex items-center gap-2 rounded-md border border-accent/40 bg-accent/10 px-3 py-1.5 font-medium text-accent-strong transition-colors hover:bg-accent/20"

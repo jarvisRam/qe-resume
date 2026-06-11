@@ -499,6 +499,57 @@ export const accomplishments: Accomplishment[] = [
   },
 ];
 
+export type PersonalProject = {
+  slug: string;
+  title: string;
+  tagline: string;
+  description: string;
+  screenshot?: string;
+  url?: string;
+  stack: string[];
+};
+
+export const personalProjects: PersonalProject[] = [
+  {
+    slug: "scorebook",
+    title: "Scorebook App",
+    tagline: "A cross-platform sports score tracker — built to stress-test the AI-first startup claim.",
+    description:
+      "A serious personal project to validate the claims of big AI tech CEOs around million-dollar single-person startups — built end to end with AI assistance. A full-stack monorepo: a React Native / Expo mobile app, a Node.js + Express REST backend, Playwright E2E tests, and Maestro mobile flows. The whole build process was documented to honestly evaluate what AI-assisted solo development actually enables.",
+    stack: ["React Native", "Expo", "Node.js", "Express", "Playwright", "Maestro", "Zustand", "React Query"],
+  },
+  {
+    slug: "flag-explorer",
+    title: "Flag Explorer Game",
+    tagline: "A multi-level flag quiz with country facts — built for my daughter's iPad.",
+    description:
+      "A fun geography game built for my 8-year-old daughter. Progressive difficulty levels, right answers unlock an interesting fact about that country. Entirely vanilla HTML, CSS, and JavaScript — deliberately zero framework, shipped and running on her iPad.",
+    screenshot: "/projects/flag-explorer.png",
+    url: "https://flag-explorer.vercel.app",
+    stack: ["HTML", "CSS", "JavaScript", "Vercel"],
+  },
+  {
+    slug: "birthday-rsvp",
+    title: "Birthday RSVP & Memory Wall",
+    tagline: "RSVP + allergy capture + post-party photo sharing — in her favourite theme.",
+    description:
+      "Built to organise my daughter's 9th birthday: guests RSVP and flag dietary allergies before the party, then after the event a shared memory wall lets everyone upload photos and messages. Full-stack Next.js with a Neon Postgres DB, Drizzle ORM, and NextAuth — deployed in her favourite party theme.",
+    screenshot: "/projects/birthday-rsvp.png",
+    url: "https://harshini-birthday-invite.vercel.app",
+    stack: ["Next.js", "Neon DB", "Drizzle ORM", "NextAuth", "shadcn/ui", "Tailwind", "Vercel"],
+  },
+  {
+    slug: "cricbuds",
+    title: "CricBuds Prediction Game",
+    tagline: "Season-long score prediction game for our Edinburgh cricket friends group.",
+    description:
+      "All of us play for different clubs across Edinburgh in the East of Scotland league. CricBuds lets us predict each other's scores across the season, tracks the leaderboard, and keeps the banter going between match days. Built with Next.js, Neon Postgres, and Drizzle ORM — live throughout the cricket season.",
+    screenshot: "/projects/cricbuds.png",
+    url: "https://cricbuds.vercel.app",
+    stack: ["Next.js", "Neon DB", "Drizzle ORM", "NextAuth", "shadcn/ui", "Tailwind", "Framer Motion"],
+  },
+];
+
 export const resume = {
   profile,
   skills,
@@ -507,4 +558,5 @@ export const resume = {
   certifications,
   aiExpertise,
   accomplishments,
+  personalProjects,
 };

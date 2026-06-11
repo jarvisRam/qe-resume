@@ -4,8 +4,9 @@ import { Footer } from "@/components/Footer";
 import { Section, SectionHeading } from "@/components/Section";
 import { Reveal } from "@/components/Reveal";
 import { AccomplishmentCard } from "@/components/AccomplishmentCard";
+import { PersonalProjectCard } from "@/components/PersonalProjectCard";
 import { ExperienceTimeline } from "@/components/ExperienceTimeline";
-import { profile, accomplishments, experiences, skills, aiExpertise } from "@/content/resume";
+import { profile, accomplishments, experiences, skills, aiExpertise, personalProjects } from "@/content/resume";
 
 export default function Home() {
   return (
@@ -131,6 +132,25 @@ export default function Home() {
                     ))}
                   </div>
                 </div>
+              </Reveal>
+            ))}
+          </div>
+        </Section>
+
+        <Section id="projects">
+          <Reveal>
+            <SectionHeading index="05">Personal projects</SectionHeading>
+          </Reveal>
+          <Reveal>
+            <p className="mb-6 max-w-3xl leading-relaxed text-muted">
+              Side projects built for fun, learning, and the people I love — from validating AI-first
+              development to keeping my daughter entertained on long car rides.
+            </p>
+          </Reveal>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {personalProjects.map((project, i) => (
+              <Reveal key={project.slug} delay={i * 0.06} className="h-full">
+                <PersonalProjectCard project={project} />
               </Reveal>
             ))}
           </div>
