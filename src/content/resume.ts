@@ -64,7 +64,7 @@ export const profile: Profile = {
   summaryShort:
     "Lead QE with 16 years in test automation, performance engineering, and CI/CD — building the testing platform behind FanDuel Sportsbook.",
   summary:
-    "Lead Quality Engineer with 16 years across automation, performance, and CI/CD — the last five building the testing platform the whole FanDuel Sportsbook org depends on. I design the systems other engineers test through: AI-driven test automation, statistical performance-regression detection, cross-platform native E2E, and CI I made ~70% faster — and I act as a force multiplier, bridging capability-building and feature teams to raise quality maturity. Earlier I built UI and API automation frameworks from scratch and led offshore test teams across insurance and financial-services clients.",
+    "Lead Quality Engineer with 16 years across automation, performance, and CI/CD — the last five building the testing platform the whole FanDuel Sportsbook org depends on. I design the systems other engineers test through: AI-driven test automation, statistical performance-regression detection, cross-platform native E2E, and CI I made ~70% faster — guided by a shift-left philosophy of preventing defects rather than catching them, with acceptance suites running against mocked environments and contract testing guarding integration boundaries. I act as a force multiplier, bridging capability-building and feature teams to raise quality maturity; earlier I built UI and API automation frameworks from scratch and led offshore test teams across insurance and financial-services clients.",
   links: [{ label: "LinkedIn", href: "https://www.linkedin.com/in/SriramVenkataramanlkd" }],
 };
 
@@ -73,7 +73,10 @@ export const skills: SkillGroup[] = [
     group: "Test Strategy & Architecture",
     items: [
       "Quality Maturity Model (testing pillars & layers)",
+      "Shift-left / defect prevention",
       "Test pyramid & strategy",
+      "Test data strategy",
+      "Contract testing",
       "Gray-box / screen-object patterns",
       "BDD / Gherkin standards",
       "Accessibility testing",
@@ -85,6 +88,7 @@ export const skills: SkillGroup[] = [
     items: [
       "Detox (React Native)",
       "Appium / WebdriverIO",
+      "Maestro (mobile flows)",
       "wix-pilot (AI / NLP tests)",
       "Percy visual regression",
       "Cypress",
@@ -99,6 +103,7 @@ export const skills: SkillGroup[] = [
       "Baseline validation & anomaly detection",
       "iOS / Android perf instrumentation",
       "Datadog metrics & events",
+      "Sentry (crash reporting & alerting)",
       "SLOs & error budgets",
     ],
   },
@@ -106,6 +111,7 @@ export const skills: SkillGroup[] = [
     group: "CI/CD & Infrastructure",
     items: [
       "Buildkite",
+      "GitHub Actions",
       "Test parallelization (Jest sharding)",
       "Build caching (hybrid iOS)",
       "Terraform / AWS (S3, IAM, Bedrock)",
@@ -391,28 +397,29 @@ export const accomplishments: Accomplishment[] = [
   {
     slug: "quality-maturity-model",
     title: "Quality Maturity Model & Docs",
-    tagline: "Defined the testing pillars, layers, and maturity levels the Sportsbook org tests by.",
-    tags: ["Strategy", "Docusaurus", "Mentoring"],
+    tagline: "Defined the shift-left testing pillars, layers, and maturity model the Sportsbook org tests by.",
+    tags: ["Strategy", "Shift-left", "Docusaurus", "Mentoring"],
     metrics: [
       { label: "Engineering docs authored", value: "40+" },
       { label: "Scope", value: "Org-wide" },
       { label: "Surfaces", value: "iOS / Android / Web" },
     ],
     problem:
-      "Squads tested inconsistently with no shared definition of what 'good' looked like — quality engineering sat as one central capability-building team, distant from the feature teams that needed to adopt it, leaving duplicated effort and uneven coverage.",
+      "Squads tested inconsistently with no shared definition of what 'good' looked like — quality engineering sat as one central capability-building team, distant from the feature teams that needed to adopt it, leaving duplicated effort and uneven coverage. Defects were being caught late rather than prevented early.",
     approach: [
-      "Defined the testing layers (unit & component → acceptance → E2E) and the per-channel testing pillars (web acceptance, native automation, web E2E, CMS, SB API), published across 40+ Docusaurus pages.",
-      "Acted as a force multiplier — bridging the Wolverines capability team and feature squads, and partnering with the Staff QAs operating at pillar level toward a unified quality strategy (automation + manual, not separate).",
-      "Paired with squads to adopt the model, balance test-automation utilisation, and migrate brittle high-level tests to faster, more reliable layers.",
+      "Defined the testing layers (unit & component → acceptance on mocked environments → contract testing → E2E) and the per-channel testing pillars (web acceptance, native automation, web E2E, CMS, SB API), underpinned by a shift-left philosophy — test at the lowest effective layer, catch defects before they propagate. Published across 40+ Docusaurus pages.",
+      "Acted as a force multiplier — bridging the Quality Engineering Capabilities team and feature squads, and partnering with the Staff QAs operating at pillar level toward a unified quality strategy (automation + manual, not separate).",
+      "Paired with squads to adopt the model, push testing left, and migrate brittle high-level tests down to faster, more reliable layers — acceptance on mocked environments and contract tests instead of expensive E2E.",
     ],
     impact: [
       "Gave the org a single, documented language and target for quality maturity across iOS, Android, and web.",
+      "Embedded a shift-left mindset — squads catch defects at the acceptance or contract layer rather than at E2E or in production.",
       "Drove adoption by embedding closer to feature teams, so each owns its quality outcome.",
       "Turned one-off automation work into a repeatable, teachable system across the Sportsbook channels.",
     ],
     pdfSummary:
-      "Defined the org's testing layers, pillars & maturity model (40+ docs) and acted as a force multiplier driving quality-engineering adoption across feature teams.",
-    stack: ["Docusaurus", "Test strategy", "Quality maturity", "Mentoring"],
+      "Defined the org's shift-left testing layers (acceptance-on-mock → contract → E2E), pillars & maturity model (40+ docs) — embedding a prevent-defects-not-just-catch-them culture across feature teams.",
+    stack: ["Docusaurus", "Test strategy", "Shift-left", "Contract testing", "Mentoring"],
   },
 
   // ── Earlier career (Cognizant, 2010–2021) ──
@@ -516,10 +523,10 @@ export const personalProjects: PersonalProject[] = [
     title: "Scorebook App",
     tagline: "A cross-platform sports score tracker — built to stress-test the AI-first startup claim.",
     description:
-      "A serious personal project to validate the claims of big AI tech CEOs around million-dollar single-person startups — built end to end with AI assistance. A full-stack monorepo: a React Native / Expo mobile app and a Node.js + Express REST backend, with Maestro mobile flows for automated testing. The whole build process was documented to honestly evaluate what AI-assisted solo development actually enables.",
+      "A serious personal project to validate the claims of big AI tech CEOs around million-dollar single-person startups — built end to end with AI assistance. A full-stack monorepo: a React Native / Expo mobile app and a Node.js + Express REST backend, with Maestro mobile flows for automated testing and GitHub Actions for CI. The whole build process was documented to honestly evaluate what AI-assisted solo development actually enables.",
     pdfSummary:
-      "React Native / Expo + Node.js/Express monorepo built solo with AI assistance — a documented experiment to validate AI-first single-person startup claims.",
-    stack: ["React Native", "Expo", "Node.js", "Express", "Maestro", "Zustand", "React Query"],
+      "React Native / Expo + Node.js/Express monorepo built solo with AI assistance — Maestro mobile flows, GitHub Actions CI. A documented experiment to validate AI-first single-person startup claims.",
+    stack: ["React Native", "Expo", "Node.js", "Express", "Maestro", "GitHub Actions", "Zustand", "React Query"],
   },
   {
     slug: "flag-explorer",
