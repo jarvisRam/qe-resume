@@ -25,9 +25,27 @@ npm run build && npm run start
 
 ## The PDF
 
-Open `/resume`, click **Save as PDF** (or Cmd/Ctrl+P). The print stylesheet strips
-the nav/toolbar and renders a single-column, system-font, black-on-white one-pager
-with standard headings and selectable text — engineered to pass ATS parsers.
+The `/resume` page renders an ATS-friendly, single-column, black-on-white one-pager.
+Visitors click **Download PDF** to get a pre-generated file directly — no print dialog.
+
+### Regenerating the PDF after content changes
+
+Whenever you update [`src/content/resume.ts`](src/content/resume.ts), regenerate the downloadable PDF and commit it:
+
+```bash
+npm run dev          # keep the dev server running in one terminal
+npm run generate-pdf # in another terminal — saves to public/Sriram-Venkataraman-Resume.pdf
+```
+
+Then commit the updated PDF alongside your content changes:
+
+```bash
+git add public/Sriram-Venkataraman-Resume.pdf
+git commit -m "Regenerate resume PDF"
+git push
+```
+
+> `generate-pdf` requires [Playwright](https://playwright.dev) to be installed (`npm i -g playwright && npx playwright install chromium`).
 
 ## Deploy to Vercel
 
