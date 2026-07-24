@@ -1,127 +1,110 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { ArrowLeft } from "lucide-react";
 import { PrintButton } from "@/components/PrintButton";
-import {
-  profile,
-  skills,
-  experiences,
-  education,
-  certifications,
-  aiExpertise,
-  accomplishments,
-  personalProjects,
-} from "@/content/resume";
+import { profile, resumeSummary, resumeMetrics, resumeExperiences, resumeSkillGroups, resumeAiParagraph } from "@/content/resume";
 
 export const metadata: Metadata = {
-  title: `${profile.name} — Resume`,
+  title: `${profile.name} — Résumé`,
   robots: { index: false },
 };
 
-// ATS-clean styling. Deliberately plain: single column, system font, black on
-// white, standard headings, real selectable text, no icons. Inline styles keep
-// it independent of the site's dark theme.
-const sheet: React.CSSProperties = {
-  fontFamily: "Arial, Helvetica, sans-serif",
-  color: "#000",
-  background: "#fff",
-  width: "100%",
-  maxWidth: "8.5in",
-  margin: "0 auto",
-  padding: "0.7in 0.75in",
-  lineHeight: 1.4,
-  fontSize: "10.5pt",
-};
+const ink = "#292b31";
+const accent700 = "#5d5294";
+const muted = "#595d6c";
+const body = "#3f424d";
+const hairline = "#cfd3e5";
 
-const h2: React.CSSProperties = {
-  fontSize: "13pt",
-  fontWeight: "bold",
-  margin: "16px 0 6px",
-  paddingBottom: "2px",
-  borderBottom: "1px solid #000",
-};
-
-const linkStyle: React.CSSProperties = { color: "#000", textDecoration: "none" };
+function SectionLabel({ children }: { children: React.ReactNode }) {
+  return (
+    <div
+      style={{
+        fontSize: "11px",
+        letterSpacing: ".12em",
+        textTransform: "uppercase",
+        color: accent700,
+        fontWeight: 600,
+        margin: "26px 0 12px",
+        paddingBottom: "7px",
+        borderBottom: "1.5px solid #d2cefd",
+      }}
+    >
+      {children}
+    </div>
+  );
+}
 
 export default function ResumePage() {
   return (
-    <div className="resume-page" style={{ background: "#3a3f47", minHeight: "100vh", paddingBottom: "3rem" }}>
-      <div className="no-print sticky top-0 z-10 flex items-center justify-between gap-4 border-b border-line bg-ink/90 px-5 py-3 backdrop-blur-md sm:px-8">
-        <Link
-          href="/"
-          className="inline-flex items-center gap-2 font-mono text-sm text-dim transition-colors hover:text-accent"
-        >
-          <ArrowLeft size={15} /> back to site
+    <div style={{ background: "#2a2c38", minHeight: "100vh", paddingBottom: "3rem" }}>
+      <div className="no-print sticky top-0 z-10 flex items-center justify-between gap-4 border-b border-divider px-5 py-3 backdrop-blur-md sm:px-8" style={{ background: "color-mix(in srgb, var(--color-bg) 90%, transparent)" }}>
+        <Link href="/" className="font-mono text-[13px] text-neutral-300 transition-colors hover:text-accent">
+          ← back to portfolio
         </Link>
-        <div className="flex items-center gap-3">
-          <PrintButton />
-        </div>
+        <PrintButton />
       </div>
 
       <div
-        className="print-sheet"
-        style={{ ...sheet, marginTop: "1.5rem", boxShadow: "0 10px 40px rgba(0,0,0,0.4)" }}
+        style={{
+          color: ink,
+          fontSize: "13.5px",
+          lineHeight: 1.5,
+          background: "#fff",
+          width: "100%",
+          maxWidth: "8.5in",
+          margin: "1.5rem auto 0",
+          padding: "0.6in",
+          boxShadow: "0 10px 40px rgba(0,0,0,0.4)",
+        }}
+        className="print:m-0 print:shadow-none"
       >
         {/* Header */}
-        <div style={{ fontSize: "20pt", fontWeight: "bold" }}>{profile.name}</div>
-        <div style={{ fontSize: "12pt", marginTop: "2px" }}>{profile.title}</div>
-        <div style={{ fontSize: "9.5pt", marginTop: "6px" }}>
-          Email: {profile.email} | Phone: {profile.phone} | Location: {profile.location}
-          {profile.links.map((l) => (
-            <span key={l.label}>
-              {" | "}
-              {l.label}:{" "}
-              <a href={l.href} style={linkStyle}>
-                {l.href.replace(/^https?:\/\//, "")}
-              </a>
-            </span>
-          ))}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "flex-end",
+            gap: "20px",
+            flexWrap: "wrap",
+            borderBottom: `2px solid ${ink}`,
+            paddingBottom: "14px",
+          }}
+        >
+          <div>
+            <h1 style={{ fontSize: "32px", letterSpacing: "-.02em", margin: "0 0 4px", color: ink }}>{profile.name}</h1>
+            <div style={{ fontSize: "15px", color: accent700, fontWeight: 500 }}>{profile.title}</div>
+          </div>
+          <div className="font-mono" style={{ fontSize: "11.5px", color: muted, textAlign: "right", lineHeight: 1.7 }}>
+            {profile.location}
+            <br />
+            {profile.email}
+            <br />
+            linkedin.com/in/SriramVenkataramanlkd
+          </div>
         </div>
 
-        {/* Summary */}
-        <h2 style={h2}>Professional Summary</h2>
-        <p style={{ margin: 0 }}>{profile.summary}</p>
+        <p style={{ margin: "16px 0 0", color: body, lineHeight: 1.55 }}>{resumeSummary}</p>
 
-        {/* Skills */}
-        <h2 style={h2}>Skills</h2>
-        <div>
-          {skills.map((g) => (
-            <div key={g.group} style={{ marginBottom: "3px" }}>
-              <strong>{g.group}:</strong> {g.items.join(", ")}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "12px", marginTop: "16px" }}>
+          {resumeMetrics.map((m) => (
+            <div key={m.label} style={{ border: `1px solid ${hairline}`, borderRadius: "8px", padding: "10px 12px" }}>
+              <div style={{ fontSize: "20px", fontWeight: 600, color: accent700 }}>{m.value}</div>
+              <div style={{ fontSize: "10.5px", color: muted }}>{m.label}</div>
             </div>
           ))}
         </div>
 
-        {/* AI Engineering */}
-        <h2 style={h2}>AI Engineering</h2>
-        <div style={{ marginBottom: "4px" }}>
-          <strong>Tools:</strong> {aiExpertise.tools.join(", ")}
-        </div>
-        <div style={{ marginBottom: "4px" }}>
-          <strong>Practices:</strong> {aiExpertise.practices.join(", ")}
-        </div>
-        <ul style={{ margin: "4px 0 0", paddingLeft: "18px" }}>
-          {aiExpertise.skills.map((s) => (
-            <li key={s.name} style={{ marginBottom: "2px" }}>
-              <strong>{s.name}:</strong> {s.desc}
-            </li>
-          ))}
-        </ul>
-
-        {/* Experience */}
-        <h2 style={h2}>Work Experience</h2>
-        {experiences.map((exp, i) => (
-          <div key={i} style={{ marginBottom: "10px" }}>
-            <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <strong style={{ fontSize: "11pt" }}>
-                {exp.role}, {exp.company}
-              </strong>
-              <span style={{ fontSize: "9.5pt" }}>{exp.period}</span>
+        <SectionLabel>Experience</SectionLabel>
+        {resumeExperiences.map((exp) => (
+          <div key={exp.role} style={{ marginBottom: "16px" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: "16px", flexWrap: "wrap" }}>
+              <div style={{ fontWeight: 600, fontSize: "14.5px" }}>{exp.role}</div>
+              <div className="font-mono" style={{ fontSize: "11.5px", color: muted, whiteSpace: "nowrap" }}>
+                {exp.period} · {exp.location}
+              </div>
             </div>
-            <div style={{ fontSize: "9.5pt", fontStyle: "italic" }}>{exp.location}</div>
-            <ul style={{ margin: "4px 0 0", paddingLeft: "18px" }}>
-              {exp.bullets.map((b, j) => (
-                <li key={j} style={{ marginBottom: "2px" }}>
+            <ul style={{ margin: "7px 0 0", paddingLeft: "18px", color: body, lineHeight: 1.5 }}>
+              {exp.bullets.map((b) => (
+                <li key={b} style={{ marginBottom: "2px" }}>
                   {b}
                 </li>
               ))}
@@ -129,41 +112,23 @@ export default function ResumePage() {
           </div>
         ))}
 
-        {/* Accomplishments — compressed to one line each for the PDF */}
-        <h2 style={h2}>Selected Accomplishments</h2>
-        <ul style={{ margin: 0, paddingLeft: "18px" }}>
-          {accomplishments
-            .filter((a) => a.era !== "earlier")
-            .map((a) => (
-              <li key={a.slug} style={{ marginBottom: "3px" }}>
-                <strong>{a.title}:</strong> {a.pdfSummary}
-              </li>
-            ))}
-        </ul>
-
-        {/* Personal Projects */}
-        <h2 style={h2}>Personal Projects</h2>
-        <ul style={{ margin: 0, paddingLeft: "18px" }}>
-          {personalProjects.map((p) => (
-            <li key={p.slug} style={{ marginBottom: "3px" }}>
-              <strong>{p.title}:</strong> {p.pdfSummary}
-            </li>
+        <SectionLabel>Core skills</SectionLabel>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "6px 28px", color: body, fontSize: "12.5px" }}>
+          {resumeSkillGroups.map((g) => (
+            <div key={g.label}>
+              <b style={{ color: ink }}>{g.label}</b> — {g.body}
+            </div>
           ))}
-        </ul>
-
-        {/* Education */}
-        <h2 style={h2}>Education &amp; Certifications</h2>
-        {education.map((e, i) => (
-          <div key={i} style={{ display: "flex", justifyContent: "space-between" }}>
-            <span>
-              <strong>{e.qualification}</strong>, {e.institution}
-            </span>
-            <span style={{ fontSize: "9.5pt" }}>{e.period}</span>
-          </div>
-        ))}
-        <div style={{ marginTop: "4px" }}>
-          <strong>Certifications:</strong> {certifications.join(", ")}
         </div>
+
+        <SectionLabel>AI engineering</SectionLabel>
+        <p style={{ margin: 0, color: body, lineHeight: 1.5 }}>
+          {resumeAiParagraph.before}
+          <b style={{ color: ink }}>{resumeAiParagraph.skillOne}</b>
+          {resumeAiParagraph.mid}
+          <b style={{ color: ink }}>{resumeAiParagraph.skillTwo}</b>
+          {resumeAiParagraph.after}
+        </p>
       </div>
     </div>
   );

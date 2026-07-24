@@ -1,16 +1,16 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { ArrowLeft, ArrowRight, ExternalLink } from "lucide-react";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { Reveal } from "@/components/Reveal";
+import { Kicker } from "@/components/Kicker";
 import { MetricStat } from "@/components/MetricStat";
 import { TagChip } from "@/components/TagChip";
-import { accomplishments } from "@/content/resume";
+import { caseStudies, caseStudyOrder, getAdjacentCaseStudies } from "@/content/caseStudies";
 
 export function generateStaticParams() {
-  return accomplishments.map((a) => ({ slug: a.slug }));
+  return caseStudyOrder.map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({
@@ -19,147 +19,100 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const item = accomplishments.find((a) => a.slug === slug);
+  const item = caseStudies[slug];
   if (!item) return {};
   return { title: `${item.title} — Sriram Venkataraman`, description: item.tagline };
 }
 
-function Block({ title, children }: { title: string; children: React.ReactNode }) {
-  return (
-    <div>
-      <h2 className="mb-3 font-mono text-sm text-accent">{title}</h2>
-      {children}
-    </div>
-  );
-}
-
-function BulletList({ items }: { items: string[] }) {
-  return (
-    <ul className="space-y-2 text-[15px] leading-relaxed text-muted">
-      {items.map((b, i) => (
-        <li key={i} className="flex gap-3">
-          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent/70" />
-          <span>{b}</span>
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-export default async function WorkDetail({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+export default async function WorkDetail({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const index = accomplishments.findIndex((a) => a.slug === slug);
-  if (index === -1) notFound();
+  const item = caseStudies[slug];
+  if (!item) notFound();
 
-  const item = accomplishments[index];
-  const prev = accomplishments[(index - 1 + accomplishments.length) % accomplishments.length];
-  const next = accomplishments[(index + 1) % accomplishments.length];
+  const { prev, next } = getAdjacentCaseStudies(slug);
 
   return (
     <>
-      <Nav />
-      <main className="mx-auto w-full max-w-3xl flex-1 px-5 py-12 sm:px-8 sm:py-16">
-        <Link
-          href="/#work"
-          className="inline-flex items-center gap-2 font-mono text-sm text-dim transition-colors hover:text-accent"
-        >
-          <ArrowLeft size={15} />
-          cd ..
+      <Nav condensed />
+      <main className="mx-auto w-full max-w-[860px] px-[40px] pb-[96px] pt-[104px] max-[640px]:px-[22px]">
+        <Link href="/#work" className="font-mono text-[13px] text-neutral-400 transition-colors hover:text-accent">
+          ← selected work
         </Link>
 
         <Reveal>
-          <header className="mt-8">
-            <h1 className="text-3xl font-bold tracking-tight text-fg sm:text-4xl">{item.title}</h1>
-            <p className="mt-3 text-lg text-muted">{item.tagline}</p>
-            <div className="mt-5 flex flex-wrap gap-2">
-              {item.tags.map((t) => (
-                <TagChip key={t}>{t}</TagChip>
-              ))}
-            </div>
-          </header>
+          <p className="mb-[14px] mt-[30px] font-mono text-[12.5px] text-neutral-500">{item.tag}</p>
+          <h1 className="mb-[18px] max-w-[18ch] text-[46px] leading-[1.02] tracking-[-.03em] max-[640px]:text-[32px]">
+            {item.title}
+          </h1>
+          <p className="mb-[30px] max-w-[52ch] text-[19px] leading-[1.5] text-neutral-200">{item.tagline}</p>
+
+          <div className="mb-2 flex flex-wrap gap-2">
+            {item.stack.map((t) => (
+              <TagChip key={t}>{t}</TagChip>
+            ))}
+          </div>
+
+          <div className="mt-10 flex flex-wrap gap-10 border-y border-divider py-7">
+            {item.metrics.map((m) => (
+              <MetricStat key={m.l} n={m.n} l={m.l} />
+            ))}
+          </div>
         </Reveal>
 
-        {item.metrics.length > 0 && (
-          <Reveal>
-            <div className="mt-8 grid grid-cols-2 gap-5 rounded-xl border border-line bg-card p-6 sm:grid-cols-3">
-              {item.metrics.map((m) => (
-                <MetricStat key={m.label} metric={m} large />
-              ))}
-            </div>
-          </Reveal>
-        )}
+        <Reveal>
+          <Kicker className="mt-11">The problem</Kicker>
+          <p className="text-[16px] leading-[1.65] text-neutral-300">{item.problem}</p>
+        </Reveal>
 
-        <div className="mt-12 space-y-10">
-          <Reveal>
-            <Block title="// the problem">
-              <p className="text-[15px] leading-relaxed text-muted">{item.problem}</p>
-            </Block>
-          </Reveal>
-          <Reveal>
-            <Block title="// approach">
-              <BulletList items={item.approach} />
-            </Block>
-          </Reveal>
-          <Reveal>
-            <Block title="// impact">
-              <BulletList items={item.impact} />
-            </Block>
-          </Reveal>
-          <Reveal>
-            <Block title="// stack">
-              <div className="flex flex-wrap gap-2">
-                {item.stack.map((s) => (
-                  <TagChip key={s}>{s}</TagChip>
-                ))}
+        <Reveal>
+          <Kicker className="mt-11">What I built</Kicker>
+          <div>
+            {item.approach.map((a) => (
+              <div key={a} className="grid grid-cols-[20px_1fr] gap-3 py-[9px] text-[15.5px] leading-[1.6] text-neutral-300">
+                <span className="text-accent">▪</span>
+                <span>{a}</span>
               </div>
-            </Block>
-          </Reveal>
-          {item.links && item.links.length > 0 && (
-            <Reveal>
-              <Block title="// links">
-                <div className="flex flex-wrap gap-4">
-                  {item.links.map((l) => (
-                    <a
-                      key={l.label}
-                      href={l.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-sm text-accent transition-colors hover:text-accent-strong"
-                    >
-                      {l.label}
-                      <ExternalLink size={14} />
-                    </a>
-                  ))}
-                </div>
-              </Block>
-            </Reveal>
-          )}
-        </div>
+            ))}
+          </div>
+        </Reveal>
 
-        <nav className="mt-16 flex items-stretch justify-between gap-4 border-t border-line pt-6">
+        <Reveal>
+          <Kicker className="mt-11">Impact</Kicker>
+          <div>
+            {item.impact.map((i) => (
+              <div key={i} className="grid grid-cols-[20px_1fr] gap-3 py-[9px] text-[15.5px] leading-[1.6] text-neutral-300">
+                <span className="text-accent">→</span>
+                <span>{i}</span>
+              </div>
+            ))}
+          </div>
+        </Reveal>
+
+        <div className="mt-16 grid grid-cols-2 gap-4 max-[640px]:grid-cols-1">
           <Link
             href={`/work/${prev.slug}`}
-            className="group flex flex-1 flex-col items-start rounded-lg border border-line bg-card p-4 transition-colors hover:border-accent/40"
+            className="flex flex-col gap-1.5 rounded-[10px] border border-divider p-[18px] text-text transition-colors hover:border-accent/45"
           >
-            <span className="inline-flex items-center gap-1.5 font-mono text-xs text-dim">
-              <ArrowLeft size={13} /> prev
-            </span>
-            <span className="mt-1 text-sm font-medium text-fg group-hover:text-accent">{prev.title}</span>
+            <span className="font-mono text-[11.5px] text-neutral-500">← previous</span>
+            <span className="text-[15px]">{prev.title}</span>
           </Link>
           <Link
             href={`/work/${next.slug}`}
-            className="group flex flex-1 flex-col items-end rounded-lg border border-line bg-card p-4 text-right transition-colors hover:border-accent/40"
+            className="flex flex-col gap-1.5 rounded-[10px] border border-divider p-[18px] text-right text-text transition-colors hover:border-accent/45"
           >
-            <span className="inline-flex items-center gap-1.5 font-mono text-xs text-dim">
-              next <ArrowRight size={13} />
-            </span>
-            <span className="mt-1 text-sm font-medium text-fg group-hover:text-accent">{next.title}</span>
+            <span className="font-mono text-[11.5px] text-neutral-500">next →</span>
+            <span className="text-[15px]">{next.title}</span>
           </Link>
-        </nav>
+        </div>
+
+        <div className="mt-12">
+          <Link
+            href="/#work"
+            className="inline-flex items-center justify-center gap-1.5 rounded-md border border-divider px-[14px] py-[6px] text-sm font-medium text-text transition-colors hover:bg-text/7 active:bg-text/14"
+          >
+            ← All selected work
+          </Link>
+        </div>
       </main>
       <Footer />
     </>

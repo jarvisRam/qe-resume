@@ -1,28 +1,26 @@
-import { profile } from "@/content/resume";
+import { contact, profile } from "@/content/resume";
+import { Btn } from "./Btn";
 
 export function Footer() {
   return (
-    <footer className="no-print mt-auto border-t border-line">
-      <div className="mx-auto flex w-full max-w-5xl flex-col gap-3 px-5 py-8 font-mono text-xs text-dim sm:flex-row sm:items-center sm:justify-between sm:px-8">
-        <span>
-          <span className="text-term-green">$</span> echo &quot;{profile.name}&quot;
-        </span>
-        <div className="flex flex-wrap gap-4">
-          <a href={`mailto:${profile.email}`} className="transition-colors hover:text-accent">
+    <footer className="no-print mt-[112px] border-t border-divider pt-10">
+      <div className="mx-auto w-full max-w-[1080px] px-10 pb-[96px] max-[860px]:px-[22px]">
+        <p className="mb-[14px] font-mono text-[13px] text-neutral-400">
+          <span className="text-accent">$</span> {contact.kicker}
+        </p>
+        <h2 className="mb-5 max-w-[20ch] text-[30px] tracking-[-.02em]">{contact.heading}</h2>
+        <div className="flex flex-wrap gap-3">
+          <Btn href={`mailto:${profile.email}`} variant="primary">
             {profile.email}
-          </a>
+          </Btn>
           {profile.links.map((l) => (
-            <a
-              key={l.label}
-              href={l.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="transition-colors hover:text-accent"
-            >
+            <Btn key={l.label} href={l.href} external>
               {l.label}
-            </a>
+            </Btn>
           ))}
+          <Btn href="/resume">Résumé / PDF</Btn>
         </div>
+        <p className="mt-10 font-mono text-[12px] text-neutral-600">{contact.credit}</p>
       </div>
     </footer>
   );

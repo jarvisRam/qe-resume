@@ -1,111 +1,123 @@
 import { Nav } from "@/components/Nav";
 import { Hero } from "@/components/Hero";
 import { Footer } from "@/components/Footer";
-import { Section, SectionHeading } from "@/components/Section";
+import { Section } from "@/components/Section";
 import { Reveal } from "@/components/Reveal";
-import { AccomplishmentCard } from "@/components/AccomplishmentCard";
-import { PersonalProjectCard } from "@/components/PersonalProjectCard";
+import { Kicker } from "@/components/Kicker";
+import { MetricStat } from "@/components/MetricStat";
+import { WorkRow } from "@/components/WorkRow";
+import { Card, CardKicker, CardTitle, CardBody } from "@/components/Card";
+import { Pill } from "@/components/Pill";
 import { ExperienceTimeline } from "@/components/ExperienceTimeline";
-import { profile, accomplishments, experiences, skills, aiExpertise, personalProjects } from "@/content/resume";
+import { PersonalProjectCard } from "@/components/PersonalProjectCard";
+import {
+  impactMetrics,
+  workRows,
+  aiSection,
+  experiences,
+  skills,
+  personalProjects,
+  personalProjectsIntro,
+} from "@/content/resume";
 
 export default function Home() {
+  const fanduelRows = workRows.filter((r) => r.era === "fanduel");
+  const earlierRows = workRows.filter((r) => r.era === "earlier");
+
   return (
     <>
       <Nav />
-      <main className="flex-1">
+      <main id="top" className="mx-auto w-full max-w-[1080px] px-[40px] pb-[96px] pt-[84px] max-[860px]:px-[22px]">
         <Hero />
 
-        <Section>
-          <Reveal>
-            <p className="max-w-3xl text-lg leading-relaxed text-muted">{profile.summary}</p>
-          </Reveal>
-        </Section>
+        <Reveal>
+          <div className="mt-16 grid grid-cols-4 gap-6 border-t border-divider pt-[34px] max-[860px]:grid-cols-2">
+            {impactMetrics.map((m) => (
+              <MetricStat key={m.label} n={m.value} l={m.label} size="lg" />
+            ))}
+          </div>
+        </Reveal>
 
         <Section id="work">
           <Reveal>
-            <SectionHeading index="01">Selected work — FanDuel</SectionHeading>
+            <Kicker>01 — Selected work · FanDuel Sportsbook</Kicker>
           </Reveal>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {accomplishments
-              .filter((a) => a.era !== "earlier")
-              .map((item, i) => (
-                <Reveal key={item.slug} delay={i * 0.06} className="h-full">
-                  <AccomplishmentCard item={item} />
-                </Reveal>
+          <Reveal>
+            <h2 className="mb-[30px] max-w-[22ch] text-[34px] tracking-[-.02em]">
+              The testing platform behind FanDuel Sportsbook.
+            </h2>
+          </Reveal>
+          <Reveal>
+            <div>
+              {fanduelRows.map((row, i) => (
+                <WorkRow key={row.slug} item={row} last={i === fanduelRows.length - 1} />
               ))}
-          </div>
+            </div>
+          </Reveal>
 
           <Reveal>
-            <h3 className="mt-14 mb-6 flex items-baseline gap-3 text-lg font-semibold text-fg">
-              <span className="font-mono text-sm text-accent">↳</span>
-              Earlier career — Cognizant
-            </h3>
+            <Kicker className="mt-[52px]">↳ Earlier career · Cognizant</Kicker>
           </Reveal>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {accomplishments
-              .filter((a) => a.era === "earlier")
-              .map((item, i) => (
-                <Reveal key={item.slug} delay={i * 0.06} className="h-full">
-                  <AccomplishmentCard item={item} />
-                </Reveal>
+          <Reveal>
+            <div>
+              {earlierRows.map((row, i) => (
+                <WorkRow key={row.slug} item={row} last={i === earlierRows.length - 1} />
               ))}
-          </div>
+            </div>
+          </Reveal>
         </Section>
 
         <Section id="ai">
           <Reveal>
-            <SectionHeading index="02">AI engineering</SectionHeading>
+            <Kicker>02 — AI engineering</Kicker>
           </Reveal>
           <Reveal>
-            <p className="mb-6 max-w-3xl leading-relaxed text-muted">{aiExpertise.summary}</p>
+            <h2 className="mb-[18px] max-w-[24ch] text-[34px] tracking-[-.02em]">{aiSection.heading}</h2>
           </Reveal>
-          <div className="grid gap-4 lg:grid-cols-2">
-            <Reveal>
-              <div className="rounded-xl border border-line bg-card p-5">
-                <h3 className="mb-3 font-mono text-sm text-accent">// tools &amp; practices</h3>
-                <div className="mb-2 text-xs text-dim">Daily tools</div>
-                <div className="mb-4 flex flex-wrap gap-2">
-                  {aiExpertise.tools.map((t) => (
-                    <span
-                      key={t}
-                      className="rounded-md border border-accent/30 bg-accent/10 px-2.5 py-1 font-mono text-sm text-accent-strong"
-                    >
-                      {t}
-                    </span>
-                  ))}
-                </div>
-                <div className="mb-2 text-xs text-dim">Ways of working</div>
+          <Reveal>
+            <p className="mb-10 max-w-[62ch] text-[15.5px] leading-[1.6] text-neutral-300">{aiSection.intro}</p>
+          </Reveal>
+          <Reveal>
+            <p className="mb-10 max-w-[62ch] text-[15.5px] leading-[1.6] text-neutral-300">{aiSection.subtext}</p>
+          </Reveal>
+
+          <Reveal>
+            <div className="mb-[30px] grid grid-cols-2 gap-5 max-[860px]:grid-cols-1">
+              {aiSection.cards.map((c) => (
+                <Card key={c.title}>
+                  <CardKicker>{c.kicker}</CardKicker>
+                  <CardTitle>{c.title}</CardTitle>
+                  <CardBody>{c.body}</CardBody>
+                </Card>
+              ))}
+            </div>
+          </Reveal>
+
+          <Reveal>
+            <div className="grid grid-cols-2 gap-10 max-[860px]:grid-cols-1">
+              <div>
+                <h6 className="mb-3 text-neutral-400">{"// Daily tools"}</h6>
                 <div className="flex flex-wrap gap-2">
-                  {aiExpertise.practices.map((p) => (
-                    <span
-                      key={p}
-                      className="rounded-md border border-line bg-surface px-2.5 py-1 text-sm text-muted"
-                    >
-                      {p}
-                    </span>
+                  {aiSection.dailyTools.map((t) => (
+                    <Pill key={t}>{t}</Pill>
                   ))}
                 </div>
               </div>
-            </Reveal>
-            <Reveal delay={0.06}>
-              <div className="rounded-xl border border-line bg-card p-5">
-                <h3 className="mb-3 font-mono text-sm text-accent">// agent skills I built (reused org-wide)</h3>
-                <ul className="space-y-4">
-                  {aiExpertise.skills.map((s) => (
-                    <li key={s.name}>
-                      <div className="font-mono text-sm text-fg">{s.name}</div>
-                      <p className="mt-1 text-sm leading-relaxed text-muted">{s.desc}</p>
-                    </li>
+              <div>
+                <h6 className="mb-3 text-neutral-400">{"// Ways of working"}</h6>
+                <div className="flex flex-wrap gap-2">
+                  {aiSection.waysOfWorking.map((p) => (
+                    <Pill key={p}>{p}</Pill>
                   ))}
-                </ul>
+                </div>
               </div>
-            </Reveal>
-          </div>
+            </div>
+          </Reveal>
         </Section>
 
         <Section id="experience">
           <Reveal>
-            <SectionHeading index="03">Experience</SectionHeading>
+            <Kicker>03 — Experience</Kicker>
           </Reveal>
           <Reveal>
             <ExperienceTimeline experiences={experiences} />
@@ -114,21 +126,16 @@ export default function Home() {
 
         <Section id="skills">
           <Reveal>
-            <SectionHeading index="04">Skills</SectionHeading>
+            <Kicker>04 — Skills</Kicker>
           </Reveal>
-          <div className="grid gap-4 sm:grid-cols-2">
-            {skills.map((group, i) => (
-              <Reveal key={group.group} delay={i * 0.05}>
-                <div className="rounded-xl border border-line bg-card p-5">
-                  <h3 className="mb-3 font-mono text-sm text-accent">{group.group}</h3>
+          <div className="grid grid-cols-2 gap-x-14 gap-y-10 max-[860px]:grid-cols-1">
+            {skills.map((group) => (
+              <Reveal key={group.group}>
+                <div>
+                  <h6 className="mb-[14px] text-accent-300">{group.group}</h6>
                   <div className="flex flex-wrap gap-2">
                     {group.items.map((item) => (
-                      <span
-                        key={item}
-                        className="rounded-md border border-line bg-surface px-2.5 py-1 text-sm text-muted"
-                      >
-                        {item}
-                      </span>
+                      <Pill key={item}>{item}</Pill>
                     ))}
                   </div>
                 </div>
@@ -139,21 +146,20 @@ export default function Home() {
 
         <Section id="projects">
           <Reveal>
-            <SectionHeading index="05">Personal projects</SectionHeading>
+            <Kicker>05 — Personal projects</Kicker>
           </Reveal>
           <Reveal>
-            <p className="mb-6 max-w-3xl leading-relaxed text-muted">
-              Side projects built for fun, learning, and the people I love — from validating AI-first
-              development to keeping my daughter entertained on long car rides.
+            <p className="mb-[34px] max-w-[62ch] text-[15.5px] leading-[1.6] text-neutral-300">
+              {personalProjectsIntro}
             </p>
           </Reveal>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {personalProjects.map((project, i) => (
-              <Reveal key={project.slug} delay={i * 0.06} className="h-full">
-                <PersonalProjectCard project={project} />
-              </Reveal>
-            ))}
-          </div>
+          <Reveal>
+            <div className="grid grid-cols-2 gap-5 max-[860px]:grid-cols-1">
+              {personalProjects.map((project) => (
+                <PersonalProjectCard key={project.slug} project={project} />
+              ))}
+            </div>
+          </Reveal>
         </Section>
       </main>
       <Footer />

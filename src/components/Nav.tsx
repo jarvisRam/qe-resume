@@ -1,38 +1,43 @@
 import Link from "next/link";
-import { FileText } from "lucide-react";
+import { Btn } from "./Btn";
 
-export function Nav() {
+const links = [
+  { href: "/#work", label: "Work" },
+  { href: "/#ai", label: "AI" },
+  { href: "/#experience", label: "Experience" },
+  { href: "/#skills", label: "Skills" },
+  { href: "/#projects", label: "Projects" },
+];
+
+const condensedLinks = [
+  { href: "/#work", label: "Work" },
+  { href: "/#experience", label: "Experience" },
+];
+
+export function Nav({ condensed = false }: { condensed?: boolean }) {
+  const items = condensed ? condensedLinks : links;
   return (
-    <header className="no-print sticky top-0 z-50 border-b border-line/70 bg-ink/80 backdrop-blur-md">
-      <nav className="mx-auto flex w-full max-w-5xl items-center justify-between px-5 py-3.5 sm:px-8">
-        <Link href="/" className="font-mono text-sm text-muted transition-colors hover:text-fg">
-          <span className="text-term-green">~/</span>sriram
+    <header
+      className="no-print fixed inset-x-0 top-0 z-40 border-b border-divider backdrop-blur-md"
+      style={{ background: "color-mix(in srgb, var(--color-bg) 82%, transparent)" }}
+    >
+      <div className="mx-auto flex h-[58px] max-w-[1080px] items-center gap-[26px] px-10 max-[860px]:px-[22px]">
+        <Link href="/" className="mr-auto font-mono text-[16px] text-text">
+          ~/sriram
         </Link>
-        <div className="flex items-center gap-1 text-sm sm:gap-2">
-          <a href="/#work" className="hidden rounded-md px-3 py-1.5 text-muted transition-colors hover:text-fg sm:block">
-            Work
-          </a>
-          <a href="/#ai" className="hidden rounded-md px-3 py-1.5 text-muted transition-colors hover:text-fg sm:block">
-            AI
-          </a>
-          <a href="/#experience" className="hidden rounded-md px-3 py-1.5 text-muted transition-colors hover:text-fg sm:block">
-            Experience
-          </a>
-          <a href="/#skills" className="hidden rounded-md px-3 py-1.5 text-muted transition-colors hover:text-fg sm:block">
-            Skills
-          </a>
-          <a href="/#projects" className="hidden rounded-md px-3 py-1.5 text-muted transition-colors hover:text-fg sm:block">
-            Projects
-          </a>
-          <Link
-            href="/resume"
-            className="ml-1 inline-flex items-center gap-2 rounded-md border border-accent/40 bg-accent/10 px-3 py-1.5 font-medium text-accent-strong transition-colors hover:bg-accent/20"
+        {items.map((l) => (
+          <a
+            key={l.href}
+            href={l.href}
+            className="text-[13.5px] text-neutral-300 transition-colors hover:text-accent max-[860px]:hidden"
           >
-            <FileText size={15} />
-            Resume / PDF
-          </Link>
-        </div>
-      </nav>
+            {l.label}
+          </a>
+        ))}
+        <Btn href="/resume" variant="primary" className="px-[14px] py-[6px]">
+          Résumé / PDF
+        </Btn>
+      </div>
     </header>
   );
 }

@@ -1,14 +1,14 @@
-import type { Metric } from "@/content/resume";
-
-export function MetricStat({ metric, large = false }: { metric: Metric; large?: boolean }) {
+export function MetricStat({ n, l, size = "md" }: { n: string; l: string; size?: "md" | "lg" }) {
   return (
     <div>
       <div
-        className={`font-mono font-semibold text-accent-strong ${large ? "text-3xl sm:text-4xl" : "text-2xl"}`}
+        className={`font-semibold leading-none tracking-[-.02em] text-accent-300 ${
+          size === "lg" ? "text-[38px]" : "text-[32px]"
+        }`}
       >
-        {metric.value}
+        {n}
       </div>
-      <div className="mt-1 text-xs leading-snug text-dim">{metric.label}</div>
+      <div className="mt-2 max-w-[22ch] text-[12.5px] text-neutral-400">{l}</div>
     </div>
   );
 }

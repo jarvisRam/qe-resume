@@ -1,13 +1,10 @@
-import { Download } from "lucide-react";
-
 export function PrintButton() {
   return (
     <a
       href="/Sriram-Venkataraman-Resume.pdf"
       download="Sriram-Venkataraman-Resume.pdf"
-      className="inline-flex items-center gap-2 rounded-md border border-accent/40 bg-accent/10 px-4 py-2 text-sm font-medium text-accent-strong transition-colors hover:bg-accent/20"
+      className="inline-flex items-center justify-center gap-1.5 rounded-md border border-accent px-[14px] py-[6px] text-sm font-medium text-accent transition-colors hover:bg-accent/12 active:bg-accent/22"
     >
-      <Download size={16} />
       Download PDF
     </a>
   );
