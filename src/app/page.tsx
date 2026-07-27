@@ -134,8 +134,8 @@ export default function Home() {
           </Reveal>
           <div className="grid gap-4 sm:grid-cols-2">
             {skills.map((group, i) => (
-              <Reveal key={group.group} delay={i * 0.05}>
-                <div className="rounded-xl border border-line bg-card p-5">
+              <Reveal key={group.group} delay={i * 0.05} className="h-full">
+                <div className="h-full rounded-xl border border-line bg-card p-5">
                   <h3 className="mb-3 font-mono text-sm text-accent">{group.group}</h3>
                   <div className="flex flex-wrap gap-2">
                     {group.items.map((item) => (

@@ -93,6 +93,22 @@ export const skills: SkillGroup[] = [
       "Mentoring & enablement",
     ],
   },
+  // Paired with Test Strategy above: both are tall cards, so the two-column
+  // grid stays balanced instead of leaving a short card stranded beside them.
+  {
+    group: "Test Management & Delivery",
+    items: [
+      "System integration testing (SIT)",
+      "User acceptance testing (UAT)",
+      "Risk-based & exploratory testing",
+      "Test estimation & planning",
+      "Test design optimisation",
+      "Defect management & triage",
+      "Capacity planning & work allocation",
+      "Onshore–offshore coordination",
+      "Stakeholder status reporting",
+    ],
+  },
   {
     group: "Mobile & E2E Automation",
     items: [
@@ -170,7 +186,11 @@ export const experiences: Experience[] = [
     location: "Edinburgh, UK",
     bullets: [
       "Built UI and API automation frameworks from scratch (Protractor–Cucumber–TypeScript; ReadyAPI + Groovy assertion library) and the Azure DevOps pipelines to run them — Royal London, Resonate Tech.",
+      "Owned a program-wide UI framework uplift — hardened test reliability and built failure-analysis reporting into the Azure pipelines.",
+      "Tested newly built microservices against stubbed environments (Mountebank, WireMock, Swagger-driven mock data; Docker via DockerHub/Portainer) before integration was available.",
       "Delivered an accessibility-regression framework that cut accessibility regression effort ~40%, plus a UI error-handling/mocking framework.",
+      "Shifted testing left into refinement — static-tested requirements and raised ambiguities with the PO before stories entered the backlog, and drafted the Gherkin E2E scenarios used as CI/CD acceptance tests.",
+      "Diagnosed defects on integrated environments through Splunk log analysis, and fixed minor application bugs with their accompanying unit tests.",
       "Authored Gherkin standards adopted across Test/BA/Dev and trained clients and peers to scale automation.",
     ],
   },
@@ -440,7 +460,7 @@ export const accomplishments: Accomplishment[] = [
     metrics: [
       { label: "Unit-test coverage", value: "55% → 70%" },
       { label: "Code duplication", value: "45% → 20%" },
-      { label: "Gate scope", value: "Coverage / readability / security" },
+      { label: "Enforced at", value: "Merge time" },
     ],
     problem:
       "Code health was drifting — coverage sat around 55% and duplication near 45% — because nothing enforced a baseline at merge time. Quality depended on reviewer diligence, so gaps and copy-paste crept in one pull request at a time.",
@@ -460,6 +480,60 @@ export const accomplishments: Accomplishment[] = [
   },
 
   // ── Earlier career (Cognizant, 2010–2021) ──
+  {
+    slug: "mocked-environments",
+    era: "earlier",
+    title: "Mocked & Stubbed Environment Testing",
+    tagline: "Testing microservices before integration existed — the 2018 ancestor of how I shift left today.",
+    tags: ["Mountebank", "WireMock", "Docker", "Swagger"],
+    metrics: [
+      { label: "Dependencies", value: "Fully stubbed" },
+      { label: "Mock source", value: "Swagger specs" },
+      { label: "Environments", value: "Dockerised" },
+    ],
+    problem:
+      "Newly built microservices had to be tested long before their downstream dependencies were available or stable. Waiting for a fully integrated environment meant testing started late, ran against flaky third-party systems, and could not reliably reproduce error conditions at all.",
+    approach: [
+      "Stood up mocked service environments with Mountebank and WireMock, generating JSON mock data directly from the Swagger specs so stubs stayed faithful to the real contracts.",
+      "Ran automation against containerised environments, using DockerHub and Portainer for image and port switching to move a suite between mocked, integrated, and cloud (AWS S3 / Cognito) setups without code changes.",
+      "Built a Protractor UI error-handling framework that mocked failure responses, making error and edge-case paths automatable that were previously impossible to trigger on demand.",
+    ],
+    impact: [
+      "Decoupled test execution from dependency availability — testing began as soon as a service was built, not when integration was ready.",
+      "Increased coverage of error and edge-case paths that could not be reproduced against real downstream systems, cutting manual testing effort.",
+      "Established the acceptance-against-mocks pattern I now run at Sportsbook scale — the same principle, years earlier.",
+    ],
+    pdfSummary:
+      "Tested microservices against stubbed environments (Mountebank/WireMock, Swagger-driven mock data, Docker via DockerHub/Portainer, AWS S3 & Cognito) and built a Protractor UI error-mocking framework that made error paths automatable.",
+    stack: ["Mountebank", "WireMock", "Swagger / OpenAPI", "Docker", "Portainer", "Protractor", "AWS S3 & Cognito"],
+  },
+  {
+    slug: "program-ui-framework",
+    era: "earlier",
+    title: "Program-Level UI Framework Uplift",
+    tagline: "Owned a program-wide framework rewrite — reliability up, failure analysis built into the pipeline.",
+    tags: ["Protractor", "Azure Pipelines", "Reliability", "Ownership"],
+    metrics: [
+      { label: "Scope", value: "Program-wide" },
+      { label: "Focus", value: "Reliability" },
+      { label: "Reporting", value: "In-pipeline" },
+    ],
+    problem:
+      "The UI automation framework shared across a client's program had become unreliable — flaky tests eroded trust in the suite, and when a pipeline run failed, engineers had no way to tell a real defect from a framework problem without manually re-running and digging through raw logs.",
+    approach: [
+      "Took ownership of the framework across the whole program rather than patching it team by team, and re-worked the layers responsible for the flakiness.",
+      "Hardened waits, synchronisation, and test isolation so results became repeatable and trustworthy.",
+      "Implemented reporting capabilities inside the Azure pipelines so every run surfaced structured, triage-ready failure information.",
+    ],
+    impact: [
+      "Made the shared suite reliable enough that teams acted on its results instead of re-running and ignoring them.",
+      "Cut failure-analysis time by giving engineers readable failure reports directly in the pipeline.",
+      "First time I owned test infrastructure at program level rather than a single team's suite — the pattern the FanDuel platform work grew from.",
+    ],
+    pdfSummary:
+      "Owned a program-wide UI framework uplift — hardened test reliability and built in-pipeline failure-analysis reporting in Azure DevOps.",
+    stack: ["Protractor", "TypeScript", "Cucumber", "Azure Pipelines"],
+  },
   {
     slug: "accessibility-automation",
     era: "earlier",
@@ -603,8 +677,16 @@ export const personalProjects: PersonalProject[] = [
   },
 ];
 
+// Closing call-to-action on the PDF. Sits after Education so it never gets in
+// the way of an ATS parsing the sections that matter.
+export const closingHook = {
+  headline: "“Ship fast or ship good” is a false choice.",
+  body: "Every team I've worked with was told they had to pick one. Building the right testing platform is how they stopped having to. Let's talk.",
+};
+
 export const resume = {
   profile,
+  closingHook,
   skills,
   experiences,
   education,

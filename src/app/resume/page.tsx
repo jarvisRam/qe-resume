@@ -11,6 +11,7 @@ import {
   aiExpertise,
   accomplishments,
   personalProjects,
+  closingHook,
 } from "@/content/resume";
 
 export const metadata: Metadata = {
@@ -50,6 +51,13 @@ const bulletList: React.CSSProperties = {
   paddingLeft: "18px",
   listStyleType: "disc",
   listStylePosition: "outside",
+};
+
+// Closing call-to-action, ruled off from the sections above it.
+const closingBand: React.CSSProperties = {
+  marginTop: "26px",
+  paddingTop: "12px",
+  borderTop: "1px solid #000",
 };
 
 // Career headline numbers, banded between two rules under the summary.
@@ -178,6 +186,18 @@ export default function ResumePage() {
             ))}
         </ul>
 
+        {/* Earlier career — the Cognizant-era accomplishments, one line each. */}
+        <h2 style={h2}>Earlier Career Highlights — Cognizant (2010–2021)</h2>
+        <ul style={{ ...bulletList, margin: 0 }}>
+          {accomplishments
+            .filter((a) => a.era === "earlier")
+            .map((a) => (
+              <li key={a.slug} style={{ marginBottom: "3px" }}>
+                <strong>{a.title}:</strong> {a.pdfSummary}
+              </li>
+            ))}
+        </ul>
+
         {/* Personal Projects */}
         <h2 style={h2}>Personal Projects</h2>
         <ul style={{ ...bulletList, margin: 0 }}>
@@ -200,6 +220,27 @@ export default function ResumePage() {
         ))}
         <div style={{ marginTop: "4px" }}>
           <strong>Certifications:</strong> {certifications.join(", ")}
+        </div>
+
+        {/* Closing call-to-action, banded like the metric row under the summary. */}
+        <div style={closingBand}>
+          <div style={{ fontSize: "12pt", fontWeight: "bold" }}>{closingHook.headline}</div>
+          <p style={{ margin: "5px 0 0", maxWidth: "6.2in" }}>{closingHook.body}</p>
+          <div style={{ fontSize: "9.5pt", marginTop: "7px" }}>
+            {profile.email}
+            {profile.links.map((l) => (
+              <span key={l.label}>
+                {"  ·  "}
+                <a href={l.href} style={linkStyle}>
+                  {l.href.replace(/^https?:\/\//, "")}
+                </a>
+              </span>
+            ))}
+            {"  ·  "}
+            <a href={profile.website} style={linkStyle}>
+              {profile.website.replace(/^https?:\/\//, "")}
+            </a>
+          </div>
         </div>
       </div>
     </div>
