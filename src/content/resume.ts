@@ -21,6 +21,8 @@ export type Profile = {
   phone: string; // rendered on the PDF only, never on the live site
   summaryShort: string; // one-liner (meta + hero tagline)
   summary: string; // 2–3 sentence positioning statement
+  headlineMetrics: Metric[]; // career-level numbers (home intro band + PDF band)
+  website: string; // portfolio URL, linked from the PDF
   links: Link[];
 };
 
@@ -62,9 +64,17 @@ export const profile: Profile = {
   email: "sriram20mail@gmail.com",
   phone: "+44 7459 606294",
   summaryShort:
-    "Lead QE with 16 years in test automation, performance engineering, and CI/CD — building the testing platform behind FanDuel Sportsbook.",
+    "I build the systems other engineers test through. I make testing faster, more reliable, and part of how teams build — not a downstream gate: I design the platforms, automation and CI that let engineers ship with confidence, turning quality from an organisational bottleneck into a force multiplier across every team.",
   summary:
-    "Lead Quality Engineer with 16 years across automation, performance, and CI/CD — the last five building the testing platform the whole FanDuel Sportsbook org depends on. I design the systems other engineers test through: AI-driven test automation, statistical performance-regression detection, cross-platform native E2E, and CI I made ~70% faster — guided by a shift-left philosophy of preventing defects rather than catching them, with acceptance suites running against mocked environments and contract testing guarding integration boundaries. I act as a force multiplier, bridging capability-building and feature teams to raise quality maturity; earlier I built UI and API automation frameworks from scratch and led offshore test teams across insurance and financial-services clients.",
+    "Sixteen years in quality engineering — the last five at FanDuel, building the testing platform behind the Sportsbook apps on iOS, Android, and web. My work sits a layer beneath the product: AI-driven test automation, statistical performance-regression detection, cross-platform native E2E, and CI fast enough that teams keep it in their loop. I lead with shift-left — acceptance suites against mocked environments, contract testing guarding integration boundaries, defects prevented rather than caught late — and I embed with feature squads rather than sitting apart from them, so quality maturity is something every team owns. Earlier I built UI and API automation frameworks from scratch and led offshore test teams across insurance and financial-services clients.",
+  headlineMetrics: [
+    { label: "In quality engineering", value: "16 yrs" },
+    { label: "Faster CI test runs", value: "~70%" },
+    { label: "Test-build time", value: "180m→30m" },
+    { label: "Codebase test coverage", value: "55%→70%" },
+    { label: "On the quality model", value: "20+ teams" },
+  ],
+  website: "https://sriramvenkataraman-portfolio.vercel.app",
   links: [{ label: "LinkedIn", href: "https://www.linkedin.com/in/SriramVenkataramanlkd" }],
 };
 
@@ -141,6 +151,7 @@ export const experiences: Experience[] = [
       "Pioneered AI-driven E2E testing by integrating wix-pilot — tests authored in natural language over a reusable prompt library, not imperative code.",
       "Cut native test runs ~70% (4-way Buildkite/Jest sharding) and test-build time ~80% (180m→30m) via build sharing + a hybrid git-aware cache, backed by Terraform S3 + Bedrock infra.",
       "Built cross-platform native E2E (Appium/WebdriverIO + Detox, Percy visual) and launch-argument testability — runtime env switching, mock injection, testIDs in prod.",
+      "Introduced SonarCloud PR quality gates (coverage, readability, maintainability, security) that lifted codebase coverage 55%→70% and cut duplication 45%→20%.",
     ],
   },
   {
@@ -400,7 +411,7 @@ export const accomplishments: Accomplishment[] = [
     tagline: "Defined the shift-left testing pillars, layers, and maturity model the Sportsbook org tests by.",
     tags: ["Strategy", "Shift-left", "Docusaurus", "Mentoring"],
     metrics: [
-      { label: "Engineering docs authored", value: "40+" },
+      { label: "Teams on the model", value: "20+" },
       { label: "Scope", value: "Org-wide" },
       { label: "Surfaces", value: "iOS / Android / Web" },
     ],
@@ -420,6 +431,32 @@ export const accomplishments: Accomplishment[] = [
     pdfSummary:
       "Defined the org's shift-left testing layers (acceptance-on-mock → contract → E2E), pillars & maturity model (40+ docs) — embedding a prevent-defects-not-just-catch-them culture across feature teams.",
     stack: ["Docusaurus", "Test strategy", "Shift-left", "Contract testing", "Mentoring"],
+  },
+  {
+    slug: "sonarcloud-quality-gates",
+    title: "SonarCloud Quality Gates",
+    tagline: "PR-blocking quality gates that lifted codebase coverage from 55% to 70% and cut duplication from 45% to 20%.",
+    tags: ["SonarCloud", "Quality gates", "Unit testing", "CI"],
+    metrics: [
+      { label: "Unit-test coverage", value: "55% → 70%" },
+      { label: "Code duplication", value: "45% → 20%" },
+      { label: "Gate scope", value: "Coverage / readability / security" },
+    ],
+    problem:
+      "Code health was drifting — coverage sat around 55% and duplication near 45% — because nothing enforced a baseline at merge time. Quality depended on reviewer diligence, so gaps and copy-paste crept in one pull request at a time.",
+    approach: [
+      "Implemented SonarCloud across the repo and configured quality gates that block any pull request lacking sufficient unit-test coverage.",
+      "Extended the gates to enforce readability, maintainability, and security standards — not coverage alone.",
+      "Wired the gate into CI so it fails the PR check automatically, making quality a merge precondition rather than a review afterthought.",
+    ],
+    impact: [
+      "Lifted codebase unit-test coverage from 55% to 70% across the board.",
+      "Cut code duplication from 45% to 20%.",
+      "Turned code health into an enforced, org-wide standard instead of a reviewer's judgement call.",
+    ],
+    pdfSummary:
+      "Introduced SonarCloud PR quality gates (coverage, readability, maintainability, security) that lifted codebase coverage 55%→70% and cut duplication 45%→20%.",
+    stack: ["SonarCloud", "Quality Gates", "CI", "Unit Testing"],
   },
 
   // ── Earlier career (Cognizant, 2010–2021) ──
