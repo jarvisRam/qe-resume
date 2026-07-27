@@ -42,6 +42,25 @@ const h2: React.CSSProperties = {
 };
 
 const linkStyle: React.CSSProperties = { color: "#000", textDecoration: "none" };
+const urlStyle: React.CSSProperties = { color: "#000", textDecoration: "underline" };
+
+// Tailwind's preflight strips list markers, so the PDF lists set them back on.
+const bulletList: React.CSSProperties = {
+  margin: "4px 0 0",
+  paddingLeft: "18px",
+  listStyleType: "disc",
+  listStylePosition: "outside",
+};
+
+// Career headline numbers, banded between two rules under the summary.
+const metricBand: React.CSSProperties = {
+  display: "flex",
+  gap: "14px",
+  marginTop: "8px",
+  padding: "7px 0",
+  borderTop: "1px solid #000",
+  borderBottom: "1px solid #000",
+};
 
 export default function ResumePage() {
   return (
@@ -76,11 +95,23 @@ export default function ResumePage() {
               </a>
             </span>
           ))}
+          {" | "}Portfolio:{" "}
+          <a href={profile.website} style={urlStyle}>
+            {profile.website.replace(/^https?:\/\//, "")}
+          </a>
         </div>
 
         {/* Summary */}
         <h2 style={h2}>Professional Summary</h2>
         <p style={{ margin: 0 }}>{profile.summary}</p>
+        <div style={metricBand}>
+          {profile.headlineMetrics.map((m) => (
+            <div key={m.label} style={{ flex: 1 }}>
+              <div style={{ fontSize: "13pt", fontWeight: "bold", lineHeight: 1.1 }}>{m.value}</div>
+              <div style={{ fontSize: "8.5pt", marginTop: "2px" }}>{m.label}</div>
+            </div>
+          ))}
+        </div>
 
         {/* Skills */}
         <h2 style={h2}>Skills</h2>
@@ -100,7 +131,7 @@ export default function ResumePage() {
         <div style={{ marginBottom: "4px" }}>
           <strong>Practices:</strong> {aiExpertise.practices.join(", ")}
         </div>
-        <ul style={{ margin: "4px 0 0", paddingLeft: "18px" }}>
+        <ul style={bulletList}>
           {aiExpertise.skills.map((s) => (
             <li key={s.name} style={{ marginBottom: "2px" }}>
               <strong>{s.name}:</strong> {s.desc}
@@ -119,7 +150,7 @@ export default function ResumePage() {
               <span style={{ fontSize: "9.5pt" }}>{exp.period}</span>
             </div>
             <div style={{ fontSize: "9.5pt", fontStyle: "italic" }}>{exp.location}</div>
-            <ul style={{ margin: "4px 0 0", paddingLeft: "18px" }}>
+            <ul style={bulletList}>
               {exp.bullets.map((b, j) => (
                 <li key={j} style={{ marginBottom: "2px" }}>
                   {b}
@@ -131,7 +162,13 @@ export default function ResumePage() {
 
         {/* Accomplishments — compressed to one line each for the PDF */}
         <h2 style={h2}>Selected Accomplishments</h2>
-        <ul style={{ margin: 0, paddingLeft: "18px" }}>
+        <div style={{ fontSize: "9pt", fontStyle: "italic", marginBottom: "4px" }}>
+          Full case studies — problem, approach, and impact for each —{" "}
+          <a href={profile.website} style={urlStyle}>
+            {profile.website.replace(/^https?:\/\//, "")}
+          </a>
+        </div>
+        <ul style={{ ...bulletList, margin: 0 }}>
           {accomplishments
             .filter((a) => a.era !== "earlier")
             .map((a) => (
@@ -143,7 +180,7 @@ export default function ResumePage() {
 
         {/* Personal Projects */}
         <h2 style={h2}>Personal Projects</h2>
-        <ul style={{ margin: 0, paddingLeft: "18px" }}>
+        <ul style={{ ...bulletList, margin: 0 }}>
           {personalProjects.map((p) => (
             <li key={p.slug} style={{ marginBottom: "3px" }}>
               <strong>{p.title}:</strong> {p.pdfSummary}
