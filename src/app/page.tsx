@@ -7,7 +7,7 @@ import { AccomplishmentCard } from "@/components/AccomplishmentCard";
 import { MetricStat } from "@/components/MetricStat";
 import { PersonalProjectCard } from "@/components/PersonalProjectCard";
 import { ExperienceTimeline } from "@/components/ExperienceTimeline";
-import { profile, accomplishments, experiences, skills, aiExpertise, personalProjects } from "@/content/resume";
+import { profile, accomplishments, experiences, skills, aiExpertise, leadership, personalProjects } from "@/content/resume";
 
 export default function Home() {
   return (
@@ -119,9 +119,35 @@ export default function Home() {
           </div>
         </Section>
 
+        <Section id="leadership">
+          <Reveal>
+            <SectionHeading index="03">Leadership</SectionHeading>
+          </Reveal>
+          <Reveal>
+            <p className="mb-6 max-w-3xl leading-relaxed text-muted">{leadership.summary}</p>
+          </Reveal>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {leadership.groups.map((group, i) => (
+              <Reveal key={group.group} delay={i * 0.05} className="h-full">
+                <div className="h-full rounded-xl border border-line bg-card p-5">
+                  <h3 className="mb-3 font-mono text-sm text-accent">// {group.group.toLowerCase()}</h3>
+                  <ul className="space-y-2 text-sm leading-relaxed text-muted">
+                    {group.items.map((item) => (
+                      <li key={item} className="flex gap-2.5">
+                        <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent/60" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </Section>
+
         <Section id="experience">
           <Reveal>
-            <SectionHeading index="03">Experience</SectionHeading>
+            <SectionHeading index="04">Experience</SectionHeading>
           </Reveal>
           <Reveal>
             <ExperienceTimeline experiences={experiences} />
@@ -130,7 +156,7 @@ export default function Home() {
 
         <Section id="skills">
           <Reveal>
-            <SectionHeading index="04">Skills</SectionHeading>
+            <SectionHeading index="05">Skills</SectionHeading>
           </Reveal>
           <div className="grid gap-4 sm:grid-cols-2">
             {skills.map((group, i) => (
@@ -155,7 +181,7 @@ export default function Home() {
 
         <Section id="projects">
           <Reveal>
-            <SectionHeading index="05">Personal projects</SectionHeading>
+            <SectionHeading index="06">Personal projects</SectionHeading>
           </Reveal>
           <Reveal>
             <p className="mb-6 max-w-3xl leading-relaxed text-muted">

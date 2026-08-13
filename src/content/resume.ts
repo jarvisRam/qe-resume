@@ -64,21 +64,35 @@ export const profile: Profile = {
   email: "sriram20mail@gmail.com",
   phone: "+44 7459 606294",
   summaryShort:
-    "I build the systems other engineers test through. I make testing faster, more reliable, and part of how teams build — not a downstream gate: I design the platforms, automation and CI that let engineers ship with confidence, turning quality from an organisational bottleneck into a force multiplier across every team.",
+    "I build the systems other engineers test through — across 21 teams, 3 pillars, and 3 locations. I design the platforms, automation and CI that let engineers ship with confidence, turning quality from an organisational bottleneck into a force multiplier across every team.",
   summary:
-    "Sixteen years in quality engineering — the last five at FanDuel, building the testing platform behind the Sportsbook apps on iOS, Android, and web. My work sits a layer beneath the product: AI-driven test automation, statistical performance-regression detection, cross-platform native E2E, and CI fast enough that teams keep it in their loop. I lead with shift-left — acceptance suites against mocked environments, contract testing guarding integration boundaries, defects prevented rather than caught late — and I embed with feature squads rather than sitting apart from them, so quality maturity is something every team owns. Earlier I built UI and API automation frameworks from scratch and led offshore test teams across insurance and financial-services clients.",
+    "Sixteen years in quality engineering — the last five at FanDuel, where I own the test strategy and Quality Maturity Model for 21 teams across 3 pillars and 3 geographic locations, building the testing platform behind the Sportsbook apps on iOS, Android, and web. I lead without authority: defining the quality gates, exit criteria, and release-readiness signals teams ship against, running testing-efficiency audits and a QA Community of Practice, and embedding with feature squads rather than sitting apart from them — so quality maturity is something every team owns. The engineering sits a layer beneath the product: AI-driven test automation, statistical performance-regression detection, cross-platform native E2E and real-device visual regression, feature-flag test control, and CI fast enough that teams keep it in their loop. Earlier I built UI and API automation frameworks from scratch and led offshore test teams across insurance and financial-services clients.",
   headlineMetrics: [
+    { label: "Teams on the quality model", value: "21" },
+    { label: "Pillars × locations", value: "3 × 3" },
     { label: "In quality engineering", value: "16 yrs" },
-    { label: "Faster CI test runs", value: "~70%" },
-    { label: "Test-build time", value: "180m→30m" },
+    { label: "Faster CI feedback", value: "~70%" },
     { label: "Codebase test coverage", value: "55%→70%" },
-    { label: "On the quality model", value: "20+ teams" },
   ],
   website: "https://sriramvenkataraman-portfolio.vercel.app",
   links: [{ label: "LinkedIn", href: "https://www.linkedin.com/in/SriramVenkataramanlkd" }],
 };
 
 export const skills: SkillGroup[] = [
+  {
+    group: "Quality Governance & Programme Leadership",
+    items: [
+      "Release readiness / go-no-go criteria",
+      "Quality gates & exit criteria",
+      "Testing efficiency audits (coverage gaps, flaky tests)",
+      "QA Community of Practice",
+      "3 Amigos / refinement participation",
+      "Cross-team test strategy",
+      "Quality reporting to senior leadership",
+      "Distributed-team collaboration (3 locations)",
+      "POC-led tool evaluation & selection",
+    ],
+  },
   {
     group: "Test Strategy & Architecture",
     items: [
@@ -87,6 +101,7 @@ export const skills: SkillGroup[] = [
       "Test pyramid & strategy",
       "Test data strategy",
       "Contract testing",
+      "Feature-flag testing",
       "Gray-box / screen-object patterns",
       "BDD / Gherkin standards",
       "Accessibility testing",
@@ -116,10 +131,10 @@ export const skills: SkillGroup[] = [
       "Appium / WebdriverIO",
       "Maestro (mobile flows)",
       "wix-pilot (AI / NLP tests)",
-      "Percy visual regression",
+      "BrowserStack App Percy (visual regression)",
+      "Device farm management",
       "Cypress",
       "Jest / RTL",
-      "BrowserStack",
     ],
   },
   {
@@ -162,11 +177,14 @@ export const experiences: Experience[] = [
     period: "2022 – Present",
     location: "Edinburgh, UK",
     bullets: [
-      "Own the test strategy and Quality Maturity Model (pillars, layers, maturity levels) for the Sportsbook RN/web monorepo across iOS, Android, and web.",
+      "Own the test strategy and Quality Maturity Model (pillars, layers, maturity levels) for 21 teams across 3 pillars and 3 geographic locations, spanning iOS, Android, and web.",
+      "Define the quality gates, exit criteria, and release-readiness signals the Sportsbook apps ship against — go/no-go input without holding sign-off authority.",
+      "Run a QA Community of Practice and quarterly-style testing-efficiency audits (coverage gaps, flaky-test patterns), sit in 3 Amigos/refinement, report quality status to senior leadership, interview and hire QEs, and lead POC-driven tool evaluation and selection for the org's testing stack.",
       "Built a Python E-Divisive + Datadog performance-regression detector that gates CI with under 2% false-positive noise and Slack alerting.",
       "Pioneered AI-driven E2E testing by integrating wix-pilot — tests authored in natural language over a reusable prompt library, not imperative code.",
       "Cut native test runs ~70% (4-way Buildkite/Jest sharding) and test-build time ~80% (180m→30m) via build sharing + a hybrid git-aware cache, backed by Terraform S3 + Bedrock infra.",
-      "Built cross-platform native E2E (Appium/WebdriverIO + Detox, Percy visual) and launch-argument testability — runtime env switching, mock injection, testIDs in prod.",
+      "Built cross-platform native E2E (Appium/WebdriverIO + Detox) and launch-argument testability — runtime env switching, mock injection, feature-flag overrides, and testIDs in prod.",
+      "Built BrowserStack App Percy visual regression across a real-device matrix (iOS + Android) and own the BrowserStack device-farm estate other squads test against.",
       "Introduced SonarCloud PR quality gates (coverage, readability, maintainability, security) that lifted codebase coverage 55%→70% and cut duplication 45%→20%.",
     ],
   },
@@ -241,6 +259,47 @@ export const aiExpertise = {
   ] as AiSkill[],
 };
 
+export type LeadershipGroup = { group: string; items: string[] };
+
+export const leadership = {
+  summary:
+    "I lead without formal authority. Nobody reports to me, but the test strategy, quality gates, and shift-left standards for 21 teams across 3 pillars and 3 geographic locations are mine to define — and adopted by embedding with squads, not mandating from a distance.",
+  groups: [
+    {
+      group: "Influence at scale",
+      items: [
+        "Drive shift-left and test-automation adoption across 21 teams, 3 pillars, 3 geographic locations — with no direct reports",
+        "Bridge the central Quality Engineering Capabilities team and feature squads",
+        "Partner with pillar-level Staff QAs toward one unified quality strategy",
+      ],
+    },
+    {
+      group: "Governance",
+      items: [
+        "Define quality gates and exit criteria squads ship against",
+        "Provide release-readiness / go-no-go input at release time",
+      ],
+    },
+    {
+      group: "Enablement",
+      items: [
+        "Run a QA Community of Practice",
+        "Run testing-efficiency audits — coverage gaps, flaky-test patterns, automation opportunities",
+        "Sit in 3 Amigos / refinement to shape acceptance criteria and edge cases up front",
+        "Onboard squads with documentation and hands-on support",
+      ],
+    },
+    {
+      group: "Organisational",
+      items: [
+        "Interview and hire quality engineers",
+        "Lead POC-driven tool evaluation and selection for the org's testing stack",
+        "Proactively introduce new capability — AI-driven test automation is the clearest example",
+      ],
+    },
+  ] as LeadershipGroup[],
+};
+
 export const accomplishments: Accomplishment[] = [
   {
     slug: "perf-detector",
@@ -298,28 +357,28 @@ export const accomplishments: Accomplishment[] = [
   {
     slug: "native-e2e",
     title: "Cross-Platform Native E2E",
-    tagline: "A unified iOS + Android E2E suite covering core betting flows, with visual regression.",
-    tags: ["Appium", "WebdriverIO", "Detox", "Percy"],
+    tagline: "A unified iOS + Android E2E suite covering core betting flows on real devices.",
+    tags: ["Appium", "WebdriverIO", "Detox", "BrowserStack"],
     metrics: [
       { label: "Appium specs", value: "58" },
       { label: "Platforms", value: "iOS + Android" },
-      { label: "Visual baselines", value: "Percy" },
+      { label: "Approx. LOC", value: "~4k" },
     ],
     problem:
-      "Betting flows (straight, parlay, SGP, teaser, round-robin) needed reliable automated coverage across both platforms, and UI regressions were slipping through with no automated visual check.",
+      "Betting flows (straight, parlay, SGP, teaser, round-robin) needed reliable automated coverage across both platforms, running against real devices rather than simulators alone.",
     approach: [
       "Built an Appium/WebdriverIO acceptance suite (58 specs, ~4k LOC) with page objects, gesture helpers, and BrowserStack configs for iOS and Android.",
       "Authored cross-platform label matchers so a single test body runs on both platforms, and tagged tests for selective PR execution.",
-      "Introduced Percy visual-regression baselines for the home-screen sport tabs (MLB, NFL, Basketball, Soccer, Tennis) on both platforms.",
+      "Layered visual-regression baselines on top of this suite for the home-screen sport tabs (see Visual Regression at Device-Matrix Scale).",
     ],
     impact: [
       "Gave the org dependable automated coverage of revenue-critical bet-placement flows on iOS and Android.",
-      "Caught unintended UI changes automatically via Percy baselines on every PR.",
       "Cut manual regression effort through reusable page objects and cross-platform single-source tests.",
+      "Became the real-device foundation the visual-regression and device-farm work builds on.",
     ],
     pdfSummary:
-      "Built a 58-spec Appium/WebdriverIO + Detox E2E suite (iOS & Android) with Percy visual regression for core betting flows.",
-    stack: ["Appium", "WebdriverIO", "Detox", "Percy", "BrowserStack", "TypeScript"],
+      "Built a 58-spec Appium/WebdriverIO + Detox E2E suite (iOS & Android) on real devices for core betting flows.",
+    stack: ["Appium", "WebdriverIO", "Detox", "BrowserStack", "TypeScript"],
   },
   {
     slug: "ci-acceleration",
@@ -367,11 +426,91 @@ export const accomplishments: Accomplishment[] = [
     impact: [
       "QA and automation can switch environments and inject mocks at runtime with no code changes or rebuilds.",
       "Eliminated the need for separate test vs. production builds, enabling production-level testing when needed.",
-      "Became foundational plumbing that the Detox and Appium suites rely on.",
+      "Became foundational plumbing that the Detox and Appium suites rely on — later extended to carry feature-flag overrides too (see Feature-Flag Test Control).",
     ],
     pdfSummary:
       "Built launch-argument testability (runtime env switching, mock injection, testIDs-in-prod) via a native Swift/Kotlin + RN module — reused by Casino.",
     stack: ["React Native", "Swift", "Kotlin", "Detox", "Native storage"],
+  },
+  {
+    slug: "feature-flag-testing",
+    title: "Feature-Flag Test Control",
+    tagline: "Deterministic flag-on / flag-off testing on demand — no rebuilds, no dashboard changes.",
+    tags: ["Feature flags", "Detox", "React Native", "Swift", "Kotlin"],
+    metrics: [
+      { label: "Rebuilds to switch flags", value: "0" },
+      { label: "Platforms", value: "iOS + Android" },
+      { label: "Suites covered", value: "Acceptance + E2E" },
+    ],
+    problem:
+      "Sportsbook features ship behind flags, but tests had no reliable way to reach flagged code paths on demand — they either couldn't exercise a flag at all or depended on remote dashboard state, which is non-deterministic and unrepeatable in CI. Android made it worse: a deeplink relaunch recreates the host activity with a cleared task, dropping any flag state that had been set at launch.",
+    approach: [
+      "Extended the existing launch-argument channel (see Launch-Argument Testability) to also carry feature-flag overrides through to the app at startup.",
+      "Added launch and relaunch helpers to the shared Detox test utilities so both acceptance and E2E suites can start — or restart — the app under a specific flag configuration.",
+      "Made the flag override survive an Android deeplink relaunch, so flag state stays intact even when the activity is recreated mid-test.",
+    ],
+    impact: [
+      "Squads verify flag-on and flag-off behaviour deterministically within a single test run, with zero rebuilds and zero dashboard changes.",
+      "Became the standard way flagged work is tested across the acceptance and E2E suites.",
+      "Removed a whole class of flag-related test flakiness caused by relying on remote, mutable flag state.",
+    ],
+    pdfSummary:
+      "Extended launch-argument testability to carry feature-flag overrides (surviving Android deeplink relaunch) — deterministic flag-on/off testing with zero rebuilds, adopted as the standard across acceptance and E2E suites.",
+    stack: ["React Native", "Swift", "Kotlin", "Detox", "Feature flags"],
+  },
+  {
+    slug: "visual-regression",
+    title: "Visual Regression at Device-Matrix Scale",
+    tagline: "Real-device visual regression for a fast-moving home-page redesign, shifted left of release candidates.",
+    tags: ["BrowserStack App Percy", "WebdriverIO", "Visual regression"],
+    metrics: [
+      { label: "Real devices", value: "10" },
+      { label: "Handover", value: "~5 weeks" },
+      { label: "Squads adopted", value: "3" },
+    ],
+    problem:
+      "A home-page redesign built on a shared component library meant the UI changed frequently and significantly as new market layouts and personalisation shipped. Verifying it across many iOS and Android devices was heavy, repetitive manual work, and bug analysis found a considerable share of reported defects were visual — most only caught on release candidates or in incident management, when they were most expensive to fix. Because the components were shared building blocks, a regression there only became visible once it had propagated into the full app, making it costly to trace back.",
+    approach: [
+      "Ran a POC evaluating visual-regression tools against 7 requirements — multi-device support, ignore-regions, WebdriverIO integration, CI/CD integration, ease of use, issue reporting, and snapshot stabilisation — and selected BrowserStack App Percy.",
+      "Built the baseline → real-device run → diff → dashboard review → approve/reject loop, where an approved diff promotes the new baseline.",
+      "Layered it on the existing WebdriverIO/BrowserStack infrastructure with per-platform, per-environment configs, running against a mocked environment so screenshots stay data-stable, plus dedicated per-platform CI pipelines.",
+      "Delivered baselines across a 10-device real-device matrix (5 iOS, 5 Android) covering the redesigned home-screen sport tabs.",
+    ],
+    impact: [
+      "Delivered full iOS + Android capability across the whole device matrix and handed it over in ~5 weeks — beyond the originally agreed iOS-only sample scope.",
+      "Adopted by three squads, including the team that led the initial POC.",
+      "Automated a visual check that was previously manual and repetitive across many real devices, backed by demos, check-ins, and full documentation for the teams that adopted it.",
+    ],
+    pdfSummary:
+      "Built BrowserStack App Percy visual regression across a 10-device real-device matrix (iOS + Android) for a fast-moving home-page redesign — POC-selected tooling, ~5-week delivery, adopted by 3 squads.",
+    stack: ["BrowserStack App Percy", "WebdriverIO", "Azure DevOps", "Visual regression"],
+  },
+  {
+    slug: "device-farm",
+    title: "Device Farm Ownership & Enablement",
+    tagline: "Own the real-device estate other squads test against, and how they plug into it.",
+    tags: ["BrowserStack", "Device farm", "Enablement"],
+    metrics: [
+      { label: "Platforms", value: "iOS + Android" },
+      { label: "Ownership", value: "Account + estate" },
+      { label: "Onboarding", value: "Docs + hands-on" },
+    ],
+    problem:
+      "Mobile testing across 21 teams needed a governed, shared real-device estate rather than each squad solving device-cloud access, configuration, and coverage on its own — duplicated setup effort and inconsistent device coverage against what users actually run.",
+    approach: [
+      "Own the BrowserStack account and device/OS estate, and maintain the real-device matrix (iPhone 15 Pro Max down to 12 Mini; Pixel 7 and Galaxy S22–S24 Ultra) the Appium, Detox, and Percy suites run against.",
+      "Build and maintain the App Automate / WebdriverIO integration patterns and per-platform, per-environment configs squads plug into rather than each standing up their own.",
+      "Onboard squads onto the shared estate with documentation, demos, and hands-on support.",
+      "Run POC-led evaluations to make evidence-based tool decisions for the estate, rather than defaulting on vendor claims.",
+    ],
+    impact: [
+      "Replaced per-team ad-hoc device-cloud setup with one governed estate other squads test against.",
+      "Squads onboard onto real-device testing without rebuilding device-cloud infrastructure themselves.",
+      "Tooling decisions for the estate are made on documented POC evidence, not vendor claims.",
+    ],
+    pdfSummary:
+      "Own the BrowserStack device-farm estate and integration patterns other squads test against — real-device matrix, onboarding, and POC-led tool evaluation.",
+    stack: ["BrowserStack", "Appium", "WebdriverIO", "Device farm management"],
   },
   {
     slug: "qa-env-smoke",
@@ -427,30 +566,32 @@ export const accomplishments: Accomplishment[] = [
   },
   {
     slug: "quality-maturity-model",
-    title: "Quality Maturity Model & Docs",
-    tagline: "Defined the shift-left testing pillars, layers, and maturity model the Sportsbook org tests by.",
-    tags: ["Strategy", "Shift-left", "Docusaurus", "Mentoring"],
+    title: "Org-Wide Quality Strategy & Governance",
+    tagline: "Test strategy, quality gates, and a shift-left maturity model for 21 teams across 3 pillars and 3 locations.",
+    tags: ["Strategy", "Governance", "Shift-left", "Docusaurus"],
     metrics: [
-      { label: "Teams on the model", value: "20+" },
-      { label: "Scope", value: "Org-wide" },
-      { label: "Surfaces", value: "iOS / Android / Web" },
+      { label: "Teams", value: "21" },
+      { label: "Pillars / locations", value: "3 / 3" },
+      { label: "Docs published", value: "40+" },
     ],
     problem:
-      "Squads tested inconsistently with no shared definition of what 'good' looked like — quality engineering sat as one central capability-building team, distant from the feature teams that needed to adopt it, leaving duplicated effort and uneven coverage. Defects were being caught late rather than prevented early.",
+      "Squads tested inconsistently with no shared definition of what 'good' looked like, no consistent quality gates at merge or release, and no forum for spreading what was working — quality engineering sat as one central capability-building team, distant from the 21 feature teams (across 3 pillars and 3 geographic locations) that needed to adopt it. Defects were being caught late rather than prevented early.",
     approach: [
       "Defined the testing layers (unit & component → acceptance on mocked environments → contract testing → E2E) and the per-channel testing pillars (web acceptance, native automation, web E2E, CMS, SB API), underpinned by a shift-left philosophy — test at the lowest effective layer, catch defects before they propagate. Published across 40+ Docusaurus pages.",
-      "Acted as a force multiplier — bridging the Quality Engineering Capabilities team and feature squads, and partnering with the Staff QAs operating at pillar level toward a unified quality strategy (automation + manual, not separate).",
+      "Defined the quality gates, exit criteria, and release-readiness signals squads ship against, and provide go/no-go input at release time without holding formal sign-off authority.",
+      "Run a QA Community of Practice and quarterly-style testing-efficiency audits (coverage gaps, flaky-test patterns, automation opportunities) across the 21 teams, and sit in 3 Amigos/refinement to shape acceptance criteria before stories are built.",
+      "Act as a force multiplier — bridging the Quality Engineering Capabilities team and feature squads across all 3 locations, partnering with pillar-level Staff QAs toward one unified strategy, and reporting quality status to senior leadership.",
       "Paired with squads to adopt the model, push testing left, and migrate brittle high-level tests down to faster, more reliable layers — acceptance on mocked environments and contract tests instead of expensive E2E.",
     ],
     impact: [
-      "Gave the org a single, documented language and target for quality maturity across iOS, Android, and web.",
+      "Gave the org a single, documented language, gate, and target for quality maturity across 21 teams, 3 pillars, 3 locations, and iOS/Android/web.",
       "Embedded a shift-left mindset — squads catch defects at the acceptance or contract layer rather than at E2E or in production.",
-      "Drove adoption by embedding closer to feature teams, so each owns its quality outcome.",
-      "Turned one-off automation work into a repeatable, teachable system across the Sportsbook channels.",
+      "Turned quality reviews into a standing practice — a Community of Practice and recurring efficiency audits, not one-off interventions.",
+      "Drove adoption by embedding closer to feature teams across every location, so each owns its quality outcome.",
     ],
     pdfSummary:
-      "Defined the org's shift-left testing layers (acceptance-on-mock → contract → E2E), pillars & maturity model (40+ docs) — embedding a prevent-defects-not-just-catch-them culture across feature teams.",
-    stack: ["Docusaurus", "Test strategy", "Shift-left", "Contract testing", "Mentoring"],
+      "Own test strategy, quality gates/exit criteria, and the shift-left Quality Maturity Model (40+ docs) for 21 teams across 3 pillars and 3 locations — QA Community of Practice, efficiency audits, and release-readiness input.",
+    stack: ["Docusaurus", "Test strategy", "Quality governance", "Shift-left", "Contract testing"],
   },
   {
     slug: "sonarcloud-quality-gates",
@@ -692,6 +833,7 @@ export const resume = {
   education,
   certifications,
   aiExpertise,
+  leadership,
   accomplishments,
   personalProjects,
 };

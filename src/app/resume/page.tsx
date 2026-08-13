@@ -9,6 +9,7 @@ import {
   education,
   certifications,
   aiExpertise,
+  leadership,
   accomplishments,
   personalProjects,
   closingHook,
@@ -120,6 +121,15 @@ export default function ResumePage() {
             </div>
           ))}
         </div>
+
+        {/* Leadership & Governance */}
+        <h2 style={h2}>Quality Leadership &amp; Governance</h2>
+        <p style={{ margin: "0 0 4px" }}>{leadership.summary}</p>
+        {leadership.groups.map((g) => (
+          <div key={g.group} style={{ marginBottom: "3px" }}>
+            <strong>{g.group}:</strong> {g.items.join("; ")}
+          </div>
+        ))}
 
         {/* Skills */}
         <h2 style={h2}>Skills</h2>

@@ -15,6 +15,9 @@ export function Nav() {
           <a href="/#ai" className="hidden rounded-md px-3 py-1.5 text-muted transition-colors hover:text-fg sm:block">
             AI
           </a>
+          <a href="/#leadership" className="hidden rounded-md px-3 py-1.5 text-muted transition-colors hover:text-fg sm:block">
+            Leadership
+          </a>
           <a href="/#experience" className="hidden rounded-md px-3 py-1.5 text-muted transition-colors hover:text-fg sm:block">
             Experience
           </a>
