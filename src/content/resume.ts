@@ -45,6 +45,7 @@ export type Education = {
 export type Accomplishment = {
   slug: string;
   era?: "fanduel" | "earlier"; // defaults to fanduel; "earlier" = pre-FanDuel
+  aiRelated?: boolean; // true → also shown in the AI engineering section
   title: string;
   tagline: string;
   tags: string[];
@@ -330,6 +331,7 @@ export const accomplishments: Accomplishment[] = [
   },
   {
     slug: "ai-test-automation",
+    aiRelated: true,
     title: "AI-Driven Test Automation",
     tagline: "Tests authored in plain English across Detox, Cypress, and Appium — not imperative code.",
     tags: ["wix-pilot", "cy.prompt()", "Detox", "Appium", "LLM"],
@@ -540,6 +542,7 @@ export const accomplishments: Accomplishment[] = [
   },
   {
     slug: "test-infra",
+    aiRelated: true,
     title: "Build-Cache & AI Test Infrastructure",
     tagline: "Terraform-provisioned S3 build cache and Bedrock access powering CI, owned as shared infra.",
     tags: ["Terraform", "AWS S3", "IAM", "Bedrock"],

@@ -117,6 +117,22 @@ export default function Home() {
               </div>
             </Reveal>
           </div>
+
+          <Reveal>
+            <h3 className="mt-10 mb-6 flex items-baseline gap-3 text-lg font-semibold text-fg">
+              <span className="font-mono text-sm text-accent">↳</span>
+              Applied AI work
+            </h3>
+          </Reveal>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {accomplishments
+              .filter((a) => a.aiRelated)
+              .map((item, i) => (
+                <Reveal key={item.slug} delay={i * 0.06} className="h-full">
+                  <AccomplishmentCard item={item} />
+                </Reveal>
+              ))}
+          </div>
         </Section>
 
         <Section id="leadership">
