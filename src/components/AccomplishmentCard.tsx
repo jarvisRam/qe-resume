@@ -3,6 +3,13 @@ import { ArrowUpRight } from "lucide-react";
 import type { Accomplishment } from "@/content/resume";
 import { TagChip } from "./TagChip";
 
+// The headline slot is display-sized, which only reads as a metric when the
+// value is actually a figure. Qualitative values ("Terraform", "Beyond my
+// team") blew up into wrapping display text, so they get the quiet treatment.
+function isFigure(value: string) {
+  return /\d/.test(value) && value.length <= 14;
+}
+
 export function AccomplishmentCard({ item }: { item: Accomplishment }) {
   const headline = item.metrics[0];
   return (
@@ -20,12 +27,18 @@ export function AccomplishmentCard({ item }: { item: Accomplishment }) {
 
       <p className="mt-2 text-sm leading-relaxed text-muted">{item.tagline}</p>
 
-      {headline && (
-        <div className="mt-4 flex items-baseline gap-2">
-          <span className="font-mono text-2xl font-semibold text-accent-strong">{headline.value}</span>
-          <span className="text-xs text-dim">{headline.label}</span>
-        </div>
-      )}
+      {headline &&
+        (isFigure(headline.value) ? (
+          <div className="mt-4 flex items-baseline gap-2">
+            <span className="font-mono text-2xl font-semibold text-accent-strong">{headline.value}</span>
+            <span className="text-xs text-dim">{headline.label}</span>
+          </div>
+        ) : (
+          <div className="mt-4 flex items-baseline gap-2 text-sm">
+            <span className="font-mono font-medium text-accent-strong">{headline.value}</span>
+            <span className="text-xs text-dim">{headline.label}</span>
+          </div>
+        ))}
 
       <div className="mt-auto flex flex-wrap gap-1.5 pt-4">
         {item.tags.map((tag) => (

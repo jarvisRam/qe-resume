@@ -41,16 +41,16 @@ export const pillars: { id: PillarId; label: string; blurb: string }[] = [
       "Designing, building and evolving TypeScript automation frameworks engineers actually adopt — page/screen-object architecture, conventions, reusable helpers, onboarding docs and the CI that runs them — across web, native and API layers.",
   },
   {
-    id: "test-layers",
-    label: "Test-layer strategy & coverage",
-    blurb:
-      "Defining which layer a test belongs at — testing pyramid as the default, trophy and honeycomb where component or service architecture warrants — and driving new coverage into the right layer instead of defaulting to E2E.",
-  },
-  {
     id: "ai",
     label: "AI-augmented & agentic quality",
     blurb:
       "Reusable multi-agent skills that triage regressions and diagnose failing suites, with bounded responsibility, isolated execution and human review — not prompting an IDE to generate test code. Natural-language test authoring over a reusable prompt library.",
+  },
+  {
+    id: "test-layers",
+    label: "Test-layer strategy & coverage",
+    blurb:
+      "Defining which layer a test belongs at — testing pyramid as the default, trophy and honeycomb where component or service architecture warrants — and driving new coverage into the right layer instead of defaulting to E2E.",
   },
   {
     id: "ci-signal",
