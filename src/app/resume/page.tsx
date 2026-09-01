@@ -114,8 +114,8 @@ export default function ResumePage() {
         <h2 style={h2}>Professional Summary</h2>
         <p style={{ margin: 0 }}>{profile.summary}</p>
         <div style={metricBand}>
-          {profile.headlineMetrics.map((m) => (
-            <div key={m.label} style={{ flex: 1 }}>
+          {profile.impactMetrics.map((m) => (
+            <div key={m.value} style={{ flex: 1 }}>
               <div style={{ fontSize: "13pt", fontWeight: "bold", lineHeight: 1.1 }}>{m.value}</div>
               <div style={{ fontSize: "8.5pt", marginTop: "2px" }}>{m.label}</div>
             </div>
@@ -168,13 +168,20 @@ export default function ResumePage() {
               <span style={{ fontSize: "9.5pt" }}>{exp.period}</span>
             </div>
             <div style={{ fontSize: "9.5pt", fontStyle: "italic" }}>{exp.location}</div>
-            <ul style={bulletList}>
-              {exp.bullets.map((b, j) => (
-                <li key={j} style={{ marginBottom: "2px" }}>
-                  {b}
-                </li>
-              ))}
-            </ul>
+            {exp.groups.map((g, gi) => (
+              <div key={gi}>
+                {g.group ? (
+                  <div style={{ fontSize: "9.5pt", fontWeight: "bold", marginTop: "5px" }}>{g.group}</div>
+                ) : null}
+                <ul style={bulletList}>
+                  {g.items.map((b, j) => (
+                    <li key={j} style={{ marginBottom: "2px" }}>
+                      {b}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
         ))}
 

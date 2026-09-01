@@ -4,7 +4,6 @@ import { Footer } from "@/components/Footer";
 import { Section, SectionHeading } from "@/components/Section";
 import { Reveal } from "@/components/Reveal";
 import { AccomplishmentCard } from "@/components/AccomplishmentCard";
-import { MetricStat } from "@/components/MetricStat";
 import { PersonalProjectCard } from "@/components/PersonalProjectCard";
 import { ExperienceTimeline } from "@/components/ExperienceTimeline";
 import { profile, accomplishments, experiences, skills, aiExpertise, leadership, personalProjects } from "@/content/resume";
@@ -21,18 +20,20 @@ export default function Home() {
             <p className="max-w-3xl text-lg leading-relaxed text-muted">{profile.summary}</p>
           </Reveal>
           <Reveal delay={0.06}>
-            <div className="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-3 lg:grid-cols-5">
-              {profile.headlineMetrics.map((metric, i) => (
-                <div
-                  key={metric.label}
-                  // The odd last cell spans the row so no gap in the divider grid shows through.
-                  className={`bg-card px-5 py-4 ${
-                    i === profile.headlineMetrics.length - 1 ? "col-span-2 lg:col-span-1" : ""
-                  }`}
-                >
-                  <MetricStat metric={metric} />
+            <div className="mt-8 grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-3">
+              {profile.impactMetrics.map((metric) => (
+                <div key={metric.value} className="bg-card px-5 py-4">
+                  <div className="font-mono text-2xl font-bold text-fg">{metric.value}</div>
+                  <div className="mt-1 text-xs text-dim">{metric.label}</div>
+                  <p className="mt-2.5 text-sm leading-relaxed text-muted">{metric.consequence}</p>
                 </div>
               ))}
+            </div>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <div className="mt-4 rounded-xl border border-line bg-card px-5 py-4">
+              <div className="font-mono text-sm text-accent">{profile.scope.line}</div>
+              <p className="mt-2 text-sm leading-relaxed text-muted">{profile.scope.governance}</p>
             </div>
           </Reveal>
         </Section>
