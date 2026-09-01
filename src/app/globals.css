@@ -89,3 +89,41 @@ a {
     print-color-adjust: exact;
   }
 }
+
+/* Entrance animation for content blocks.
+   Deliberately animates on load rather than on scroll: the previous
+   scroll-triggered version left content at opacity:0 whenever its observer
+   never fired, which blanked the page below the hero on real mobile browsers
+   and permanently hid anything inside a collapsed <details>.
+   The base state here is visible, so a failed or skipped animation is
+   invisible to the user rather than fatal. */
+@keyframes reveal-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.reveal {
+  animation: reveal-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--reveal-delay, 0s);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    animation: none;
+  }
+}
+
+/* Printing must never inherit a mid-animation frame. */
+@media print {
+  .reveal {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

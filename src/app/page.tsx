@@ -31,12 +31,20 @@ export default function Home() {
           <Reveal>
             <SectionHeading index="01">What I bring</SectionHeading>
           </Reveal>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {/* A list, not cards. Nine boxed cards of ragged-length prose forced
+              the eye to re-anchor on every tile; a ruled list gives one
+              scan-line down the numbers and lets the labels carry the reading. */}
+          <div className="border-t border-line">
             {whatIBring.map((item, i) => (
-              <Reveal key={item.label} delay={i * 0.04} className="h-full">
-                <div className="h-full rounded-xl border border-line bg-card p-5">
-                  <h3 className="text-sm font-semibold text-fg">{item.label}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted">{item.body}</p>
+              <Reveal key={item.label} delay={i * 0.03}>
+                <div className="flex gap-5 border-b border-line py-5 sm:gap-8">
+                  <span className="mt-1 shrink-0 font-mono text-xs text-dim">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <div>
+                    <h3 className="text-base font-semibold text-fg">{item.label}</h3>
+                    <p className="mt-1.5 max-w-3xl text-sm leading-relaxed text-muted">{item.body}</p>
+                  </div>
                 </div>
               </Reveal>
             ))}
