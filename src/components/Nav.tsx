@@ -9,24 +9,24 @@ export function Nav() {
           <span className="text-term-green">~/</span>sriram
         </Link>
         <div className="flex items-center gap-1 text-sm sm:gap-2">
-          <a href="/#work" className="hidden rounded-md px-3 py-1.5 text-muted transition-colors hover:text-fg sm:block">
+          <Link href="/#work" className="hidden rounded-md px-3 py-1.5 text-muted transition-colors hover:text-fg sm:block">
             Work
-          </a>
-          <a href="/#ai" className="hidden rounded-md px-3 py-1.5 text-muted transition-colors hover:text-fg sm:block">
+          </Link>
+          <Link href="/#ai" className="hidden rounded-md px-3 py-1.5 text-muted transition-colors hover:text-fg sm:block">
             AI
-          </a>
-          <a href="/#leadership" className="hidden rounded-md px-3 py-1.5 text-muted transition-colors hover:text-fg sm:block">
+          </Link>
+          <Link href="/#leadership" className="hidden rounded-md px-3 py-1.5 text-muted transition-colors hover:text-fg sm:block">
             Leadership
-          </a>
-          <a href="/#experience" className="hidden rounded-md px-3 py-1.5 text-muted transition-colors hover:text-fg sm:block">
+          </Link>
+          <Link href="/#experience" className="hidden rounded-md px-3 py-1.5 text-muted transition-colors hover:text-fg sm:block">
             Experience
-          </a>
-          <a href="/#skills" className="hidden rounded-md px-3 py-1.5 text-muted transition-colors hover:text-fg sm:block">
+          </Link>
+          <Link href="/#skills" className="hidden rounded-md px-3 py-1.5 text-muted transition-colors hover:text-fg sm:block">
             Skills
-          </a>
-          <a href="/#projects" className="hidden rounded-md px-3 py-1.5 text-muted transition-colors hover:text-fg sm:block">
+          </Link>
+          <Link href="/#projects" className="hidden rounded-md px-3 py-1.5 text-muted transition-colors hover:text-fg sm:block">
             Projects
-          </a>
+          </Link>
           <Link
             href="/resume"
             className="ml-1 inline-flex items-center gap-2 rounded-md border border-accent/40 bg-accent/10 px-3 py-1.5 font-medium text-accent-strong transition-colors hover:bg-accent/20"

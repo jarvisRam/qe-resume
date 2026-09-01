@@ -78,7 +78,7 @@ export default function Home() {
           <div className="grid gap-4 lg:grid-cols-2">
             <Reveal>
               <div className="rounded-xl border border-line bg-card p-5">
-                <h3 className="mb-3 font-mono text-sm text-accent">// tools &amp; practices</h3>
+                <h3 className="mb-3 font-mono text-sm text-accent">{"// "}tools &amp; practices</h3>
                 <div className="mb-2 text-xs text-dim">Daily tools</div>
                 <div className="mb-4 flex flex-wrap gap-2">
                   {aiExpertise.tools.map((t) => (
@@ -105,7 +105,7 @@ export default function Home() {
             </Reveal>
             <Reveal delay={0.06}>
               <div className="rounded-xl border border-line bg-card p-5">
-                <h3 className="mb-3 font-mono text-sm text-accent">// agent skills I built (reused org-wide)</h3>
+                <h3 className="mb-3 font-mono text-sm text-accent">{"// "}agent skills I built (reused org-wide)</h3>
                 <ul className="space-y-4">
                   {aiExpertise.skills.map((s) => (
                     <li key={s.name}>
@@ -130,7 +130,7 @@ export default function Home() {
             {leadership.groups.map((group, i) => (
               <Reveal key={group.group} delay={i * 0.05} className="h-full">
                 <div className="h-full rounded-xl border border-line bg-card p-5">
-                  <h3 className="mb-3 font-mono text-sm text-accent">// {group.group.toLowerCase()}</h3>
+                  <h3 className="mb-3 font-mono text-sm text-accent">{"// "}{group.group.toLowerCase()}</h3>
                   <ul className="space-y-2 text-sm leading-relaxed text-muted">
                     {group.items.map((item) => (
                       <li key={item} className="flex gap-2.5">
