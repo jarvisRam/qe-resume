@@ -465,72 +465,6 @@ export const education: Education[] = [
 
 export const certifications: string[] = ["ISTQB Foundation Level Certified"];
 
-export type AiSkill = { name: string; desc: string };
-
-export const aiExpertise = {
-  summary:
-    "I build with AI day to day — not just as a consumer of autocomplete, but designing agentic solutions that other engineers reuse. I work in a plan-and-implement flow: have the AI produce a reviewed plan/spec first, then implement against it, keeping changes deliberate and verifiable.",
-  tools: ["Claude / Claude Code", "Cursor", "GitHub Copilot"],
-  practices: [
-    "Plan-and-implement (spec-first) agentic workflows",
-    "Multi-agent orchestration",
-    "Authoring reusable agent skills",
-    "Natural-language test automation (wix-pilot, cy.prompt)",
-  ],
-  // Reusable agent skills authored in the Sportsbook repo, described generically.
-  skills: [
-    {
-      name: "Performance Impact Review",
-      desc: "A multi-agent skill that turns a raw performance change-point report into a validated review — pinpointing the commit range behind each regression, analysing the diff for performance concerns, adversarially verifying findings, and producing an actionable remediation plan. Reusable by any team triaging performance reports.",
-    },
-    {
-      name: "Acceptance-Test Debugger",
-      desc: "An agent skill that diagnoses failing native acceptance tests end to end — environment diagnostics, build/test config alignment, and failure-artifact analysis (screenshots, videos, reports) — and self-updates its known-error playbook as new issues are solved. Useful to any engineer debugging flaky or failing E2E tests.",
-    },
-  ] as AiSkill[],
-};
-
-export type LeadershipGroup = { group: string; items: string[] };
-
-export const leadership = {
-  summary:
-    "I lead without formal authority. Nobody reports to me, but the test strategy, quality gates, and shift-left standards for 21 teams across 3 pillars and 3 geographic locations are mine to define — and adopted by embedding with squads, not mandating from a distance.",
-  groups: [
-    {
-      group: "Influence at scale",
-      items: [
-        "Drive shift-left and test-automation adoption across 21 teams, 3 pillars, 3 geographic locations — with no direct reports",
-        "Bridge the central Quality Engineering Capabilities team and feature squads",
-        "Partner with pillar-level Staff QAs toward one unified quality strategy",
-      ],
-    },
-    {
-      group: "Governance",
-      items: [
-        "Define quality gates and exit criteria squads ship against",
-        "Provide release-readiness / go-no-go input at release time",
-      ],
-    },
-    {
-      group: "Enablement",
-      items: [
-        "Run a QA Community of Practice",
-        "Run testing-efficiency audits — coverage gaps, flaky-test patterns, automation opportunities",
-        "Sit in 3 Amigos / refinement to shape acceptance criteria and edge cases up front",
-        "Onboard squads with documentation and hands-on support",
-      ],
-    },
-    {
-      group: "Organisational",
-      items: [
-        "Interview and hire quality engineers",
-        "Lead POC-driven tool evaluation and selection for the org's testing stack",
-        "Proactively introduce new capability — AI-driven test automation is the clearest example",
-      ],
-    },
-  ] as LeadershipGroup[],
-};
-
 export const accomplishments: Accomplishment[] = [
   {
     slug: "perf-detector",
@@ -1125,8 +1059,9 @@ export const personalProjects: PersonalProject[] = [
   },
 ];
 
-// Closing call-to-action on the PDF. Sits after Education so it never gets in
-// the way of an ATS parsing the sections that matter.
+// Closing call-to-action. Currently not rendered on the PDF: it is three
+// lines, and including it pushes the document onto a fourth page that holds
+// nothing else. Kept here so restoring it is a UI-only change.
 export const closingHook = {
   headline: "“Ship fast or ship good” is a false choice.",
   body: "Every team I've worked with was told they had to pick one. Building the right testing platform is how they stopped having to. Let's talk.",
@@ -1142,8 +1077,6 @@ export const resume = {
   selfDirected,
   education,
   certifications,
-  aiExpertise,
-  leadership,
   accomplishments,
   personalProjects,
 };

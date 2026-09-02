@@ -9,7 +9,12 @@ import { resolve, dirname } from 'path';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const outPath = resolve(__dirname, '../public/Sriram-Venkataraman-Resume.pdf');
 
-const browser = await chromium.launch();
+// Normally Playwright finds its own bundled Chromium (npx playwright install
+// chromium). Set PLAYWRIGHT_CHROMIUM_PATH to point at an existing binary when
+// running somewhere that ships Chromium at a fixed path instead.
+const browser = await chromium.launch({
+  executablePath: process.env.PLAYWRIGHT_CHROMIUM_PATH || undefined,
+});
 const page = await browser.newPage();
 await page.goto('http://localhost:3000/resume', { waitUntil: 'networkidle' });
 await page.emulateMedia({ media: 'print' });
