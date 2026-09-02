@@ -13,14 +13,21 @@ export function ExperienceTimeline({ experiences }: { experiences: Experience[] 
             <span className="font-mono text-xs text-dim">{exp.period}</span>
           </div>
           <div className="mb-3 font-mono text-xs text-dim">{exp.location}</div>
-          <ul className="space-y-1.5 text-sm leading-relaxed text-muted">
-            {exp.bullets.map((b, j) => (
-              <li key={j} className="flex gap-2">
-                <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent/60" />
-                <span>{b}</span>
-              </li>
-            ))}
-          </ul>
+          {exp.groups.map((g, gi) => (
+            <div key={gi} className={gi > 0 ? "mt-4" : undefined}>
+              {g.group ? (
+                <div className="mb-2 font-mono text-xs text-accent">{g.group}</div>
+              ) : null}
+              <ul className="space-y-1.5 text-sm leading-relaxed text-muted">
+                {g.items.map((b, j) => (
+                  <li key={j} className="flex gap-2">
+                    <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent/60" />
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </li>
       ))}
     </ol>

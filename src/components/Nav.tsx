@@ -9,30 +9,27 @@ export function Nav() {
           <span className="text-term-green">~/</span>sriram
         </Link>
         <div className="flex items-center gap-1 text-sm sm:gap-2">
-          <Link href="/#work" className="hidden rounded-md px-3 py-1.5 text-muted transition-colors hover:text-fg sm:block">
+          <Link href="/#bring" className="hidden rounded-md px-3 py-1.5 text-muted transition-colors hover:text-fg lg:block">
+            What I bring
+          </Link>
+          <Link href="/#work" className="hidden rounded-md px-3 py-1.5 text-muted transition-colors hover:text-fg lg:block">
             Work
           </Link>
-          <Link href="/#ai" className="hidden rounded-md px-3 py-1.5 text-muted transition-colors hover:text-fg sm:block">
-            AI
-          </Link>
-          <Link href="/#leadership" className="hidden rounded-md px-3 py-1.5 text-muted transition-colors hover:text-fg sm:block">
-            Leadership
-          </Link>
-          <Link href="/#experience" className="hidden rounded-md px-3 py-1.5 text-muted transition-colors hover:text-fg sm:block">
+          <Link href="/#experience" className="hidden rounded-md px-3 py-1.5 text-muted transition-colors hover:text-fg lg:block">
             Experience
           </Link>
-          <Link href="/#skills" className="hidden rounded-md px-3 py-1.5 text-muted transition-colors hover:text-fg sm:block">
+          <Link href="/#skills" className="hidden rounded-md px-3 py-1.5 text-muted transition-colors hover:text-fg lg:block">
             Skills
           </Link>
-          <Link href="/#projects" className="hidden rounded-md px-3 py-1.5 text-muted transition-colors hover:text-fg sm:block">
+          <Link href="/#projects" className="hidden rounded-md px-3 py-1.5 text-muted transition-colors hover:text-fg lg:block">
             Projects
           </Link>
           <Link
             href="/resume"
-            className="ml-1 inline-flex items-center gap-2 rounded-md border border-accent/40 bg-accent/10 px-3 py-1.5 font-medium text-accent-strong transition-colors hover:bg-accent/20"
+            className="ml-1 inline-flex items-center gap-2 rounded-md px-3 py-1.5 text-muted transition-colors hover:text-fg"
           >
             <FileText size={15} />
-            Resume / PDF
+            CV
           </Link>
         </div>
       </nav>
